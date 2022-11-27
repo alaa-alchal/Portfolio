@@ -1,3 +1,5 @@
-Cleanup python project that allows me to ingest account details such as name, address, city, and account_id from a csv file.
-The code then assesses the similarity between the accounts; eg. Alaa Alchal is simialr to A Alchal .
-Finally the code exports a csv that includes Account Ids for the duplicate accounts on the same row.
+The project ingests data from test.csv and assesses similarities of different entities accounts. For example, the name 'Frank Jones' and 'Franky Jones' are to be considered similar.
+
+The accounts with high similariy percentage in multiple fields (name, address, and city) will be labled as duplicate accounts.
+
+The code exports a csv that contains a list of Account IDs. IDs on the same row will represent duplicate accounts.
