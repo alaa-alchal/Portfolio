@@ -1,4 +1,7 @@
 import csv
+import difflib
+import itertools
+import copy
 
 
 def extract_from_csv(filename, column_position):
@@ -14,21 +17,12 @@ def extract_from_csv(filename, column_position):
     csv_file.close()
     return list
 
-# names = extract_from_csv("test.csv", 1)
-# names
-
-
-import difflib
 
 def similarity(string1, string2):
     '''a function that calculates percentage similarity between 2 strings'''
     sequence = difflib.SequenceMatcher(isjunk=None,a=string1.lower(),b=string2.lower())
     difference = round(sequence.ratio()*100,1)
     return difference
-
-# text1 = 'Canada 175 BAGOT QUEBEC  G1K 9K8 '
-# text2 = '1502 - 1209 Richmond street london N6a 3L7'
-# print(similarity(text2, text1))
 
 
 def assess(which_list, item_id_list):
@@ -65,9 +59,6 @@ def assess(which_list, item_id_list):
     return last
 
 
-import itertools
-
-
 def list_merge(list_of_lists):
     '''merges lists which have common elements
        Source: Stack overflow (The only code taken from the web)'''
@@ -81,13 +72,6 @@ def list_merge(list_of_lists):
         list_of_lists += [list(set(itertools.chain.from_iterable(components)))]
 
     return list_of_lists
-
-
-# L = [['a', 'b', 'c'], ['b', 'd', 'e'], ['k'], ['o', 'p'], ['e', 'f'], ['p', 'a'], ['d', 'g']]
-# print(list_merge(L))
-
-
-import csv
 
 
 def write_to_file(list_to_export):
@@ -116,9 +100,6 @@ def write_to_file(list_to_export):
         else:
             print("The input is invalid!")
             print("Please try again: enter y or n \n")
-
-
-import copy
 
 
 class Data:
