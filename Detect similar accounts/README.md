@@ -4,7 +4,7 @@ The project will prompt you to choose a csv file to ingest. The file test.csv wi
 
 The code will assess similarities of different entities accounts from the csv file. For example, the name 'Frank Jones' and 'Franky Jones' are to be considered similar.
 
-The accounts with high similariy percentage (At least 60% similarity) in multiple fields (name, address, and city) will be labled as duplicate accounts.
+The accounts with high similariy percentage (At least 60% similarity) in all the fields (name, address, and city) will be labled as duplicate accounts.
 
 The code will display a lists of account IDs where IDs in the same list were found to be similar.
 
