@@ -17,7 +17,7 @@ inlfation_table['Inflation Rate'] = inlfation_table['Inflation Rate'].astype(flo
 json_open = open("package.json") #open json file
 data = js.load(json_open) #load json file
 fred = Fred(api_key = data["api_key"]) #api call from json data
-data = fred.get_series('5', frequency='a') #generate series
+data = fred.get_series('SP500', frequency='a') #generate series
 #d for daily, w for weekly, m for monthly, q for quarterly, a for annually
 # interest_rates = data.iloc[-23:] #get data
 df = pd.DataFrame(data, columns={"Interest Rates"}) #create dataframe 
