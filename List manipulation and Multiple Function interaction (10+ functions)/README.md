@@ -1,7 +1,7 @@
 # The objective of this project is to demonstrate an understanding of how to:
-• create and modify lists;
-• use list methods (e.g., append());
-• use list operators;
+• create and modify lists;\n
+• use list methods (e.g., append());\n
+• use list operators;\n
 • use file input in your code;
 • export to files; and
 • process strings.
