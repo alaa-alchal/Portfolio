@@ -7,6 +7,6 @@
 • process strings.
 
 # Challenges:
-manipulate lists in functions without using return statements in functions
-The use of local lists only
-multiple loop handling (loops within loops within loops)
+manipulate lists in functions without using return statements in functions.
+The use of local lists only.
+multiple loop handling (loops within loops within loops).
