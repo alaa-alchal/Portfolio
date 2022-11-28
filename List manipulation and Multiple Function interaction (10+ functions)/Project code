@@ -1,0 +1,510 @@
+# Alaa Alchal
+
+def add_to_list(to_do_list):
+    '''
+    Adds items to a to-do list.
+    :param to_do_list: the list to add to
+    :return: None
+    '''
+    print("Here is the list:\n")
+    for x in to_do_list: #print the list before adding
+        print(x)
+
+    question1 = input("\nWhat would you like to add?\n") #asking what item to add
+    to_do_list.append(question1) #appending the item to be added from question 1
+
+    question2 = input("What else would you like to add to the list? (Press Enter/Return to stop)\n")
+    while question2 != "": #looping and adding until the user clicks enter/return
+        to_do_list.append(question2)
+        question2 = input("What else would you like to add to the list? (Press Enter/Return to stop)\n")
+
+    print("Here is the list with your new items:\n")
+    for x in to_do_list: #print the new list
+        print(x)
+
+def completed_item(to_do_list):
+    '''
+    Mark an item from a to-do list as completed.
+    :param to_do_list: the list that contains the item that was completed
+    :return: None
+    '''
+    print("This is the chosen list:\n")
+    for x in to_do_list: #print the list before marking anything as complete
+        print(x)
+
+    fulfilled = False
+    question = input("Which item do you wish to mark as complete?\n")
+
+    formatted_list = [] #creating an empty list
+    for item in to_do_list: #add item from to do list to it to use it for search later
+        formatted_list.append(item.title())
+
+    while not fulfilled: #looping and adding [x] to completed items as long as the used doesn't choose return/enter
+
+        if question.title() in to_do_list:
+            index = formatted_list.index(question.title()) #getting the index from the formatted list which is in the same order as the to do list
+            item_changing = to_do_list[index] #item to be changed
+            to_do_list.pop(index) #remove item to be changes
+            to_do_list.insert(index, f'[x]{item_changing}') #adding it back with the sign: [x]
+            print("This is the list after marking the item as complete:\n")
+
+            for x in to_do_list: #print the new list
+                print(x)
+            question = input("\nChoose another item to mark as complete. [Enter/Return when done].\n")
+
+        elif question == "":
+            fulfilled = True #breaking the while loop when user chooses return/enter
+
+        else: #output with asking again if we chose a wrong output
+            print('This item is not marked. Please make sure you enter an item that appears in the list.')
+            question = input("Choose another item to mark as complete. [Enter/Return when done].\n")
+
+def which_list(list_name, full_list):
+    '''
+    Checks the to-do list's name, and returns the corresponding list.
+    :param list_name: the name of the list being looked for
+    :param full_list: a list containing the Today, Someday, and Completed Lists
+    :return: the Today, Someday, Complete, or All lists
+             None, otherwise
+    '''
+    chosen = []
+    if list_name == "today":
+        chosen = full_list[0] #allocating to position 0 where list today is at when item chooses today
+
+    elif list_name == "someday":
+        chosen = full_list[1] #allocating to position 1 where list someday is at when item chooses someday
+
+    elif list_name == "completed": #allocating to position 2 where list completed is at when item chooses completed
+        chosen = full_list[2]
+
+    return chosen #return the chosen list
+
+def create_to_do_list(list_name, full_list):
+    '''
+    Creates a new to-do list from a file or through user input.
+    :param list_name: the to-do list's name: Today, Someday, Completed
+    :param full_list: the list of to-do lists
+    :return: None
+    '''
+    list = []
+    question1 = input("Are you creating the list from a file, or manually?\n") #determining where are we creating the file from
+
+    if question1.lower() == "file": #opening and adding the file chosen by the user to the list
+        file = input("From which file are you creating the list?\n")
+        my_file = open(file)
+        content = my_file.read()
+        readable = content.splitlines()
+        my_file.close()
+        list.extend(readable)
+
+        print('Thank you for creating a to-do list!\n')
+
+    elif question1.lower() == "manually": #looping and appending the items chosen by the user to the list one by one
+
+        question2 = input("What would you like to add?\n")
+        list.append(question2) #appending the first item chosen to the list
+
+        fulfilled = False
+        while fulfilled == False: #looping and adding items to the manual list until choosing return/enter
+            question3 = input("What else would you like to add to the list? (Press Enter/Return to stop)\n")
+
+            if question3 != "":
+                list.append(question3)
+
+            if question3 == "":
+                fulfilled = True
+
+        print("Here is the list with your new items:\n") #print list after adding the items
+        for x in list:
+            print(x)
+        print('Thank you for creating a to-do list!\n')
+
+    else:
+        print("Sorry. We can't create a list that way.\n")
+
+    if list_name.lower() == "today": #extend the items to the first list of the full list if we choose to creade a today list
+        full_list[0].extend(list)
+
+    elif list_name.lower() == "someday": #extend the items to the second list of the full list if we choose to creade a today list
+        full_list[1].extend(list)
+
+
+
+
+def edit_to_do_list(to_do_list):
+    '''
+    Edits items in a to-do list.
+    :param to_do_list: the list to edit
+    :return: None
+    '''
+    print("Here is the list you would like to edit:\n") #print the old list
+    for x in to_do_list:
+        print(x)
+
+    question = input("Which item would you like to edit?\n") #choosing the item to edit
+
+    fulfilled = False
+    while not fulfilled: #keep looping and editing
+
+        if question in to_do_list: #getting the index of the item to be changed and replacing the item in position with the new item
+            question1 = input("What would you like to change this item to?\n")
+            index = to_do_list.index(question)
+            to_do_list[index] = question1
+            question = input("Choose another item to edit. [Return/Enter when done.]\n")
+
+        elif question == "": #stop looking when user chooses return/stop
+            fulfilled = True
+
+        else: #asking again what to edit if user input wrong answer
+            print("Sorry, you can't edit an item that isn't in the list.")
+            question = input("Choose another item to edit. [Return/Enter when done.]\n")
+
+
+def print_lists(all_lists):
+    '''
+    Prints all of the to-do lists, using different characters to delineate each list.
+    :param all_lists: a list containing the Today, Someday, and Completed Lists
+    :return: None
+    '''
+    question = input("Which list would you like to view? [Options: Today, Someday, Completed, All]\n") #asking which list to show
+
+    if question.lower() == "today": #priting the first list from full list when user chooses today
+        print(40 * "#")
+        print("TO-DO TODAY:\n")
+        for x in all_lists[0]:
+            print(f'    {x}')
+        print(40 * "#")
+
+    elif question.lower() == "someday": #priting the second list from full list when user chooses someday
+        print(40 * "+")
+        print('TO-DO SOMEDAY:\n')
+        for x in all_lists[1]:
+            print(f'    {x}')
+        print(40 * "+")
+
+    elif question.lower() == "completed": #priting the third list from full list when user chooses completed
+        print(40 * "x")
+        print("TO-DO COMPLETED:\n")
+        for x in all_lists[2]:
+            print(f'    {x}')
+        print(40 * "x")
+
+    elif question.lower() == "all": #priting all lists from full list when user chooses all
+        print(40 * "#")
+        print("TO-DO TODAY\n")
+        for x in all_lists[0]:
+            print(f'    {x}')
+        print(40 * "#")
+        print(40 * "+")
+        print('TO-DO SOMEDAY:\n')
+        for x in all_lists[1]:
+            print(f'    {x}')
+        print(40 * "+")
+        print(40 * "x")
+        print("TO-DO COMPLETED:\n")
+        for x in all_lists[2]:
+            print(f'    {x}')
+        print(40 * "x")
+
+
+def prioritize_item(to_do_list):
+    '''
+    Mark an item in a to-do list as having either a high or low priority.
+    :param to_do_list: the to-do list holding the item to be marked with a priority level
+    :return: None
+    '''
+
+    print("This is the current list:\n") #print the old list
+    for x in to_do_list:
+        print(x)
+
+    question1 = input("Which item would you like to prioritize?\n") #asking which item to prioritize
+
+    fulfilled = False
+    while fulfilled == False: #loop until user doesn't want to prioritize anything
+
+        if question1 in to_do_list:
+            question2 = input("Which level of priority? [OPTIONS: High, Low]\n") #choosing the level of priority requested
+
+            if question2.title() == "High": #adding the !! signs for high priority items
+                index = to_do_list.index(question1)
+                item_changing = to_do_list[index]
+                to_do_list[index] = f'{item_changing}!!'
+
+            elif question2.title() == "Low": #adding the -- sign for low priority items
+                index = to_do_list.index(question1)
+                item_changing = to_do_list[index]
+                to_do_list[index] = f'{item_changing}--'
+
+            question1 = input("Choose another item to prioritize. [Enter/Return when done.]\n") #reasking for another item
+
+        elif question1 == "": #breaking the while loop
+            fulfilled = True
+
+        else: #reasking the question and looping back if user enters wrong input
+            print("Sorry. But you can't prioritize an item that isn't in the list.")
+            question1 = input("Choose another item to prioritize. [Enter/Return when done.]\n")
+
+    print("This is your prioritized list:") #printing the new list
+    for x in to_do_list:
+        print(x)
+
+
+def remove_completed(full_list):
+    '''
+    Removes any items that have been marked as completed in any to-do list, counting
+    how many items are removed from each to-do list. It adds all of the removed items
+    to the Completed list, removing the [x] from the item before adding it.
+    :param full_list: a list containing the Today, Someday, and Completed Lists
+    :return: a list containing how many items were removed from each list
+    '''
+    count1 = 0 #variables to keep track of who added
+    count2 = 0
+
+    new_completed = [] #bunch of empty lists to extend to the original lists after making the changes
+    new_today = []
+    new_someday = []
+
+    for x in full_list[0]: #appending the items ending in [x] to new completed from today and to new_today if not
+        if x[0:3] == "[x]":
+            n = x.strip("[x]")
+            new_completed.append(n)
+            count1 += 1
+        else:
+            new_today.append(x)
+
+    for x in full_list[1]: #appending the items ending in [x] to new completed from someday and to new someday if not
+        if x[0:3] == "[x]":
+            n = x.strip("[x]")
+            new_completed.append(n)
+            count2 += 1
+        else:
+            new_someday.append(x)
+
+    full_list[0] = [] #emptying the today list
+    full_list[0].extend(new_today)  #adding the new today list to the today list
+    full_list[1] = [] #emptying the someday list
+    full_list[1].extend(new_someday) #adding the new today list to the someday list
+    full_list[2] = [] #emptying the completed list
+    full_list[2].extend(new_completed) #adding the new today list to the completed list
+
+    print(f'{count1} removed from #Today# list.') #printing how many removed from today to completed
+    print(f'{count2} removed from +Someday+ list.') #printing how many removed from someday to completed
+
+
+def sort_list(to_do_list):
+    '''
+    Sort a to-do list, considering priority and completion when ordering.
+    :param to_do_list: the to-do list to be sorted
+    :return: None
+    '''
+
+    high_priotity = [] #creating a bunch of empty list to sort them indicidually later and add them based on the required order
+    unprioritized = []
+    low_priority = []
+    completed = []
+
+    for item in to_do_list: #looping around and adding items to their respective lists (completed, high priority, etc)
+        if item[0:3] == "[x]":
+            completed.append(item)
+
+        elif item[-2:] == "!!":
+            high_priotity.append(item)
+
+        elif item[-2:] == "--":
+            low_priority.append(item)
+
+        else:
+            unprioritized.append(item)
+
+    high_priotity.sort() #sorting each of the new individual lists created before
+    unprioritized.sort()
+    low_priority.sort()
+    completed.sort()
+
+    to_do_list.clear() #clearing the to do list
+
+    to_do_list.extend(high_priotity) #adding items with required order to the to do list
+    to_do_list.extend(unprioritized)
+    to_do_list.extend(low_priority)
+    to_do_list.extend(completed)
+
+    for x in to_do_list: #priting the new sorted list
+        print(x)
+
+
+
+
+
+def validate_option(option):
+    '''
+    Checks if the user has entered a valid choice. If it is invalid,
+    loop until it is valid or 'done'.
+    :param option: the user's choice (a string)
+    :return: True, if valid
+             False, if done
+    '''
+    validated = False #validated to be chaning to Trye and breaking the while loop when input is valid
+    while not validated:
+
+        if option.lower() in ["add", "completed", 'create', 'edit', 'export', 'prioritize', 'remove', 'sort','view']: #return true if action is recognized except done
+            value = True
+            validated = True
+
+        elif option.lower() == "done": #return False if action is done
+            value = False
+            validated = True
+
+        else:
+            print("That input is invalid. Please try again.") #looping again in case of entering an invalid input
+            option = input("What would you like TO-DO? [Options: add, completed, create, done, edit, export, prioritize, remove, sort, view]\n") #asking again
+
+    return value #return True if not done and False if done
+
+def write_to_file(to_do_list):
+    '''
+    Exports a to-do list to a file.
+    :param to_do_list: the list to be exported
+    :return: None
+    '''
+
+    file = input("What file would you like to write to?\n") #which file
+    write_file = open(file, 'w') #opening that file
+
+    for item in to_do_list:
+
+        if to_do_list.index(item) == len(to_do_list) - 1: #adding the last item to the list without jumping to a next line because it is the end
+            write_file.write(item)
+
+        else:
+            write_file.write(item + '\n') #adding item within the list and jumping to the next line
+
+    write_file.close() #closing the file
+
+
+def main():
+    '''
+    Runs a program for creating, modifying, and exporting to-do lists.
+    :return: None
+    '''
+
+    full_list = [[],[],[]] #creating the full list. The first is today, second is someday, adn third is someday
+
+    question2 = "create" #first step is creating so we called it create
+
+    while True: #looping until broken
+
+        if question2.lower() == "add": #if output is add
+
+            if full_list[0] != [] and full_list[1] == [] and full_list[2] == []: #asking which based on which lists are not empty to mention only
+                which = input("Which list would you like to add to? [Options: Today]\n") #asking list to choose to make a change to
+            elif full_list[0] == [] and full_list[1] != [] and full_list[2] == []:
+                which = input("Which list would you like to add to? [Options: Someday]\n")
+            elif full_list[0] != [] and full_list[1] != [] and full_list[2] == []:
+                which = input("Which list would you like to add to? [Options: Today, Someday]\n")
+            elif full_list[0] != [] and full_list[1] == [] and full_list[2] != []:
+                which = input("Which list would you like to add to? [Options: Today, Completed]\n")
+            elif full_list[0] == [] and full_list[1] != [] and full_list[2] != []:
+                which = input("Which list would you like to add to? [Options: Someday, Completed]\n")
+            elif full_list[0] != [] and full_list[1] != [] and full_list[2] != []:
+                which = input("Which list would you like to add to? [Options: Today, Someday, Completed]\n")
+
+            add_to_list(which_list(which,full_list)) #using the which_list function to navigate to the requested list and running the add_to_list function
+
+        elif question2.lower() == "completed":
+
+            if full_list[0] != [] and full_list[1] == [] and full_list[2] == []: #asking which based on which lists are not empty to mention only
+                which = input("Which list would you like to add to mark a completed? [Options: Today]\n") #asking list to choose to make a change to
+            elif full_list[0] == [] and full_list[1] != [] and full_list[2] == []:
+                which = input("Which list would you like to mark a completed? [Options: Someday]\n")
+            elif full_list[0] != [] and full_list[1] != [] and full_list[2] == []:
+                which = input("Which list would you like to mark a completed? [Options: Today, Someday]\n")
+
+            completed_item(which_list(which,full_list)) #using the which_list function to navigate to the requested list and running the completed_item function
+
+        elif question2.lower() == "create":
+            question1 = input("Which list would you like to create? [Options: Today, Someday completed]\n")
+            valid = False
+            while not valid: #loop while valid is false
+
+                if question1.lower() == "today": #creating the to do list for today and then breaking the loop
+                    create_to_do_list("today", full_list)
+                    valid = True
+
+                elif question1.lower() == "someday": #creating the to do list for someday and then breaking the loop
+                    create_to_do_list("someday", full_list)
+                    valid = True
+
+                else: #looping again if input is invalid
+                    print("Try again")
+                    question1 = input("Choose a list to create. [Options: Today, Someday]\n")
+
+        elif question2.lower() == "edit": #editing list by asking which list and running edit_to_do_list when user chooses edit
+            which = input("Which list contains items you would like to edit? [Options: Today, Someday]\n")
+            edit_to_do_list(which_list(which,full_list))
+
+        elif question2.lower() == "export": #exporting list by asking which list and running write_to_file when user chooses export
+
+            if full_list[0] != [] and full_list[1] == [] and full_list[2] == []: #asking which based on which lists are not empty to mention only
+                which = input("Which list would you like to export? [Options: Today]\n") #asking list to choose to make a change to
+            elif full_list[0] == [] and full_list[1] != [] and full_list[2] == []:
+                which = input("Which list would you like to export? [Options: Someday]\n")
+            elif full_list[0] != [] and full_list[1] != [] and full_list[2] == []:
+                which = input("Which list would you like to export? [Options: Today, Someday]\n")
+            elif full_list[0] != [] and full_list[1] == [] and full_list[2] != []:
+                which = input("Which list would you like to export? [Options: Today, Completed]\n")
+            elif full_list[0] == [] and full_list[1] != [] and full_list[2] != []:
+                which = input("Which list would you like to export? [Options: Someday, Completed]\n")
+            elif full_list[0] != [] and full_list[1] != [] and full_list[2] != []:
+                which = input("Which list would you like to export? [Options: Today, Someday, Completed]\n")
+
+            write_to_file(which_list(which,full_list))
+
+        elif question2.lower() == "prioritize": #prioratizing list by asking which list and running prioritize_item when user chooses prioritize
+            which = input("Which list contains items you would like to prioritize? [Options: Today, Someday]\n")
+            prioritize_item(which_list(which,full_list))
+
+        elif question2.lower() == "remove": #removing form list when user chooses remove
+            remove_completed(full_list) #we only need to go over today and someday, so only after first and second list in all_lists
+
+        elif question2.lower() == "sort": #sorting the chosen list when user chooses sort
+            which = input("Which list would you like to sort?\n")
+            sort_list(which_list(which,full_list))
+
+            print(full_list[0])
+
+        elif question2.lower() == "view": #view list when user chooses view
+            print_lists(full_list)
+
+        question2 = input(
+            "What would you like TO-DO? [Options: add, completed, create, done, edit, export, prioritize, remove, sort, view]\n") #asking the question again while loop is active
+
+        valid = validate_option(question2) #validating the input to question2 which will loop and ask until input is valid
+
+        if not valid: #when valid is false means user has chosen done
+            print("Get it done!")
+
+            empty_list = [] #jsut an empty list to comapre other lists to, not to be presented if empty
+            if full_list[0] != empty_list: #printing the list today if it is not empty
+                print(40 * "#")
+                print("TO-DO TODAY:\n")
+                for a in full_list[0]:
+                    print(f'    {a}')
+                print(40 * "#")
+
+            if full_list[1] != empty_list: #printing the list someday if it is not empty
+                print(40 * "+")
+                print('TO-DO SOMEDAY:\n')
+                for x in full_list[1]:
+                    print(f'    {x}')
+                print(40 * "+")
+
+            if full_list[2] != empty_list: #printing the list completed if it is not empty
+                print(40 * "x")
+                print("TO-DO COMPLETED:\n")
+                for x in full_list[2]:
+                    print(f'    {x}')
+                print(40 * "x")
+            break
+
+main()
