@@ -13,7 +13,9 @@ The program will ingest feb_2021_to_oct_2022_vaccinations.csv data in this form
 
 and transform it to a dictionary with keys as the date (column A) and values as a list of vaccination counts for all locations per date (columns B, C, D, E, and F): 
 
-{'2021-02-07': ['14543', '174', '0', '0', '275'], '2021-02-14': ['14042', '256', '644', '0', '275'], etc.
+{'2021-02-07': ['14543', '174', '0', '0', '275'], 
+'2021-02-14': ['14042', '256', '644', '0', '275'],
+etc.
 
 The program then sums up the vaccination counts in each list to form a dictionary with Dates as the keys and the total vaccination count per date as the values. The program will then export the data in the form shown below in a csv file after adding headers for the two columns.
 
