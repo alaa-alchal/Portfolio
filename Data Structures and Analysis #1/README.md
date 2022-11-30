@@ -17,7 +17,7 @@ and transform it to a dictionary with keys as the date (column A) and values as 
 
 '2021-02-14': ['14042', '256', '644', '0', '275'],
 
-etc.
+etc.}
 
 The program then sums up the vaccination counts in each list to form a dictionary with Dates as the keys and the total vaccination count per date as the values. The program will then export the data in the form shown below in a csv file after adding headers for the two columns.
 
