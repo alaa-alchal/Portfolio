@@ -1,3 +1,5 @@
+# Note:
+The series of Data Structures and Analysis mini-projects are presented from least to most complex; i.e. Data Structures and Analysis #3 is the most complex and Data Structures and Analysis #1 is the least complex.
 # Goals:
 • Create dictionaries using varied value types;
 
