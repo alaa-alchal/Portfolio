@@ -1,0 +1,106 @@
+
+import csv
+
+def fewest_vaccinations(list_vac_count_by_day):
+    ''' '''
+
+    # Source of the code: https://bobbyhadz.com/blog/python-sort-list-of-tuples-by-second-element
+    from operator import itemgetter
+    list_vac_count_by_day.sort(key=itemgetter(1))
+
+
+    return list_vac_count_by_day[0:3]
+
+def most_vaccinations(list_vac_count_by_day):
+    ''' '''
+
+    # Source of the code: https://bobbyhadz.com/blog/python-sort-list-of-tuples-by-second-element
+    from operator import itemgetter
+    list_vac_count_by_day.sort(key=itemgetter(1))
+
+
+    return list_vac_count_by_day[-3:]
+
+
+def median_number_vaccinations(list_vac_count_by_day):
+    ''''''
+
+#1. sort the list
+    # Source of the code: https://bobbyhadz.com/blog/python-sort-list-of-tuples-by-second-element
+    from operator import itemgetter
+    list_vac_count_by_day.sort(key=itemgetter(1))
+
+#2. count how many values you have in the list
+    count = 0
+    for x in list_vac_count_by_day:
+        count += 1
+
+#3. get the middle position and middle position index for 2 cases: when list count is odd and when list count is even
+    half_count = count/2
+
+    #when list count is odd, you have a middle number
+    if not half_count.is_integer():
+        middle_position = int(half_count + 0.5)
+        middle_position_index = middle_position - 1
+        median = list_vac_count_by_day[middle_position_index][1]
+    else:
+        #middle positions
+        middle_position1 = half_count
+        middle_position2 = half_count + 1
+
+        #middle position indexes
+        middle_position_index1 = int(middle_position1 - 1)
+        middle_position_index2 = int(middle_position2 - 1)
+
+        median = round((list_vac_count_by_day[middle_position_index1][1] + list_vac_count_by_day[middle_position_index2][1])/2,2)
+    return median
+
+def vaccination_total(list_vac_count_by_day):
+    ''''''
+    sum = 0
+    for x in list_vac_count_by_day:
+        sum += x[1]
+    return int(sum)
+
+
+def main():
+    question = input("Which file would you like to analyze?\n")
+    try:
+        # 1. Open the file and transform da
+        with open(question, 'r') as file:
+            reader = csv.reader(file)
+            next(reader) #skip first row
+
+        # 2. Create an empty list and then add tuples with specified data types into the empty list (list_of_tuples)
+            list_of_tuples = []
+            for x in reader:
+                list_of_tuples.append((str(x[0]), int(x[1])))
+
+            file.close()
+
+        # 3. Output to text file
+
+            lines = [f'Total number of vaccinations: {vaccination_total(list_of_tuples)}',
+                     f'Median number of vaccinations: {"%.2f" % median_number_vaccinations(list_of_tuples)}',
+                     f'The week of {fewest_vaccinations(list_of_tuples)[0][0]} saw the fewest vaccinations: {fewest_vaccinations(list_of_tuples)[0][1]}',
+                     f'The week of {fewest_vaccinations(list_of_tuples)[1][0]} saw the second fewest vaccinations: {fewest_vaccinations(list_of_tuples)[1][1]}',
+                     f'The week of {fewest_vaccinations(list_of_tuples)[2][0]} saw the third fewest vaccinations: {fewest_vaccinations(list_of_tuples)[2][1]}',
+                     f'The week of {most_vaccinations(list_of_tuples)[2][0]} saw the most vaccinations: {most_vaccinations(list_of_tuples)[2][1]}',
+                     f'The week of {most_vaccinations(list_of_tuples)[1][0]} saw the second most vaccinations: {most_vaccinations(list_of_tuples)[1][1]}',
+                     f'The week of {most_vaccinations(list_of_tuples)[0][0]} saw the third most vaccinations: {most_vaccinations(list_of_tuples)[0][1]}',
+                     ]
+            with open('vaccination_data.txt', 'w') as file_out:
+                for line in lines:
+                    file_out.write(line)
+                    file_out.write('\n')
+
+
+    # handle exception 1 of type FileNotFoundError
+    except FileNotFoundError as exception:
+        print(exception)
+        print(f'Sorry, but {question} was not found.')
+        print("The program will now end.")
+        exit()
+
+main()
+#vaccine_doses_by_date.csv
