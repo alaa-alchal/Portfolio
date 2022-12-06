@@ -1,0 +1,149 @@
+
+import csv
+
+def peak_case_count(dict_with_list_values):
+    ''''''
+    list = []
+    for x in dict_with_list_values:
+        list.append((x, len(dict_with_list_values[x])))
+
+    #source
+    from operator import itemgetter
+    list.sort(key=itemgetter(1))
+
+    return list[-1]
+
+
+#Helper function
+def count_by_condition(list_of_tuples, by_what):
+    '''returns a tuple with three items: the first is the count of cases of individuals under 40.
+                                        the second is the count of cases of individuals ages 40 to 80.
+                                        the third is the count of cases of individuals ages over 80.
+                                                                                                       '''
+    # create some variables
+    count_first = 0 #conting either ages under 40 or 'City of London'
+    count_second = 0 #counting either ages 40 to 80 or 'Middlesex County'
+    count_third = 0 #counting either ages over 80 or 'Unknown/Prefer not to say'
+
+    if by_what.lower() == "count by age":
+        # for loop to get counts per age group
+        for x in list_of_tuples:
+            if x[1] == '0-19' or x[1] == '20-29' or x[1] == '30-39':
+                count_first += 1
+            elif x[1] == '40-49' or x[1] == '50-59' or x[1] == '30-39' or x[1] == '60-69' or x[1] == '70-79':
+                count_second += 1
+            elif x[1] == '80+':
+                count_third += 1
+    elif by_what.lower() == "count by location":
+        # for loop to get counts per location
+        for x in list_of_tuples:
+            if x[2] == 'City of London':
+                count_first += 1
+            elif x[2] == 'Middlesex County':
+                count_second += 1
+            elif x[2] == '':
+                count_third += 1
+
+    return (count_first, count_second, count_third)
+
+
+def main():
+    question = input("Which file would you like to analyze?\n")
+    try:
+        # 1. Open the file and transform data into lists with the first element being the first element in the line and the second element being a tuple of the remaining 3 elements.
+        with open(question, 'r') as file:
+            reader = csv.reader(file)
+            next(reader) #skip first row
+            list_of_tuples = []
+            for x in reader:
+                list_of_tuples.append((x[0], (x[1], x[2], x[3])))
+        # 2. group data by date in a dictionary
+
+            #list of all dates calles list of keys
+            list_of_keys = []
+            for x in list_of_tuples:
+                list_of_keys.append(x[0])
+
+            #remove duplicate dates from the list of keys
+            #code source: https://www.geeksforgeeks.org/python-ways-to-remove-duplicates-from-list/
+            dates_list = [*set(list_of_keys)]
+            dates_list.sort() #not necessary
+
+            #create dictionary with keys as dates and values as empty lists
+            dict_grouped_by_dates = dict()
+            for x in dates_list:
+                dict_grouped_by_dates[x] = []
+
+            #append data from the list of tuples into the values list in the dictionary based on date
+            for x in dict_grouped_by_dates:
+                for y in list_of_tuples:
+                    if y[0] == x:
+                        dict_grouped_by_dates[x].append(y[1])
+            #print to see (delete later)
+            # for x in dict_grouped_by_dates:
+            #     print(x, " : ", dict_grouped_by_dates[x])
+
+        # 3. counting all cases per location
+            cases_in_london = 0
+            cases_in_middlesex = 0
+            cases_in_unknown_location = 0
+            for x in dict_grouped_by_dates:
+                count_x = count_by_condition(dict_grouped_by_dates[x], "count by location")
+                cases_in_london += count_x[0]
+                cases_in_middlesex += count_x[1]
+                cases_in_unknown_location += count_x[2]
+
+            total_cases = cases_in_london+cases_in_middlesex+cases_in_unknown_location
+
+
+
+        # 4. counting all cases per age group
+            all_cases_under_40 = 0
+            all_cases_40_to_80 = 0
+            all_cases_over_80 = 0
+            for x in dict_grouped_by_dates:
+                count = count_by_condition(dict_grouped_by_dates[x], "count by age")
+                all_cases_under_40 += count[0]
+                all_cases_40_to_80 += count[1]
+                all_cases_over_80 += count[2]
+
+        # 5. counting cases per age group on the peak date
+            peak_date = peak_case_count(dict_grouped_by_dates)[0]
+            peak_date_case_count = peak_case_count(dict_grouped_by_dates)[1]
+
+            # the dict_grouped_by_dates['2021-12-30'] returns a list of tuples for the cases on the date selected
+            #first item in the tuple are counts under 40, second are counts 40 to 80, and third are counts over 80
+            tuple_with_age_breakdown = count_by_condition(dict_grouped_by_dates['2021-12-30'], "count by age")
+
+        # 3. Output to text file
+
+            lines = [f'There were {total_cases} MLHU cases in total.',
+                     f'Of those, there were {cases_in_london} cases reported in London.',
+                     f'There were {cases_in_middlesex} cases reported in Middlesex County.',
+                     f'There were {cases_in_unknown_location} cases reported from an unknown location.\n',
+                     "Overall cases by age group:",
+                     f'People under 40 accounted for {all_cases_under_40} case(s).',
+                     f'People between 40 and 80 accounted for {all_cases_40_to_80} case(s)',
+                     f'People over 80 accounted for {all_cases_over_80} case(s).\n',
+                     f'The most cases occurred on {peak_date}.',
+                     f'On that date, there were {peak_date_case_count} cases, broken down by age as follows:',
+                     f'{tuple_with_age_breakdown[0]} case(s) under 40.',
+                     f'{tuple_with_age_breakdown[1]} case(s) 40 to 80.',
+                     f'{tuple_with_age_breakdown[2]} case(s) over 80.'
+                      ]
+
+            with open('diagnosed_data.txt', 'w') as file_out:
+                for line in lines:
+                    file_out.write(line)
+                    file_out.write('\n')
+
+
+    # handle exception 1 of type FileNotFoundError
+    except FileNotFoundError as exception:
+        print(exception)
+        print(f'Sorry, but {question} was not found.')
+        print("The program will now end.")
+        exit()
+
+main()
+#mlhu_covid_data.csv
