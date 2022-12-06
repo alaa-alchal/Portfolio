@@ -1,0 +1,51 @@
+import csv
+
+def vaccinations_by_date(raw_list):
+    '''break down dictionaries into lists in this form: old form to ['2021-02-07', '2549'], ['2021-02-07', '1996'], ['2021-02-07', '0'] etc.'''
+    new_dict = dict()
+    for x in range(0, len(raw_list.keys())):
+        new_dict[list(raw_list.keys())[x]] = sum(
+            [int(y) for y in list(raw_list.values())[x]])
+
+    return new_dict
+
+def main():
+    '''main function'''
+    question = input("Which file would you like to analyze?\n")
+    try:
+#1. open the file and transform data into a dictionary with keys and values in this form: '2021-02-07': ['2549', '1996', '0', '0', '0']
+        with open(question, 'r') as file:
+            reader = csv.reader(file)
+            next(reader)
+            group_vaccinations_by_date = dict()
+            for x in reader:
+                group_vaccinations_by_date[x[0]] = [x[1], x[2], x[3], x[4], x[5]]
+            file.close()
+
+#2. create a dictionary with dates as key and sum of vaccines as values
+            vaccinations_by_date_sum_dict_with_title = vaccinations_by_date(group_vaccinations_by_date)
+
+#3. Write dict to csv file
+            with open('vaccine_doses_by_date.csv', 'w') as csv_file:
+                writer = csv.writer(csv_file, delimiter=',')
+                writer.writerow(["Date", "Doses"]) #add headers
+                for key, value in vaccinations_by_date_sum_dict_with_title.items():
+                    writer.writerow([key, value])
+
+    #handle exception 1 of type IndexError
+    except IndexError as exception2:
+        print(exception2)
+        print('Sorry, but you tried to access information that does not exist.')
+        print('Are you sure you entered the correct filename?')
+        print('The program will now end.')
+        exit()
+
+    #handle exception 2 of type FileNotFoundError
+    except FileNotFoundError as exception:
+        print(exception)
+        print(f'Sorry, but {question} was not found.')
+        print("The program will now end.")
+        exit()
+
+main()
+#feb_2021_to_oct_2022_vaccinations.csv
