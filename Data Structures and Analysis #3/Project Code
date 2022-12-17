@@ -1,4 +1,3 @@
-
 import csv
 
 def peak_case_count(dict_with_list_values):
@@ -13,7 +12,7 @@ def peak_case_count(dict_with_list_values):
 
     return list[-1]
 
-
+#comment
 #Helper function
 def count_by_condition(list_of_tuples, by_what):
     '''returns a tuple with three items: the first is the count of cases of individuals under 40.
