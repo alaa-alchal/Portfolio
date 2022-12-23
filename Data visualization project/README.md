@@ -1,3 +1,7 @@
+# Goal
+Demonstrate personal data ingestion and visualization skills in python on the basic level.
+
+# Task
 This program ingests data from 3 data sources:
 1.	The US inflation rate data for the years 2000 to 2021 from a website.
 2.	30-year mortgage Interest Rate data using an API call from the Federal reserve economic data (FRED) for the years 2000 to 2021.
