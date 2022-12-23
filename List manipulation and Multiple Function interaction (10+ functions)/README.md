@@ -39,7 +39,7 @@ Note that you ow you have 2 lists. If you type view, the program will prompt you
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209273233-5322224e-07c3-41b7-ae4f-4920a778b1d1.png">
 
-The remanining options are a series of commmands which you can use to manipulate and export your lists.
+The remanining options are a series of commmands you can use to manipulate and export your lists.
 
 
 When you finish editing, you can type done, and the program will do a final print of all your lists:
