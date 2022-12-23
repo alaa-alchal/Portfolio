@@ -33,7 +33,7 @@ If you type create, the program will run the previous process again and ask you 
 
 Now you have 2 lists. You will get the 10 options of what you want at the end of each process. If you type view, the program will prompt you to enter which list would you like to display. If you type "All", the program will display all lists available:
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209271566-28f3aead-736e-41fe-9e09-f860a67a4ea7.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209272870-bf49df58-df7e-470b-a983-99a40210e571.png">
 
 Now if you type add, the program will ask you which list would you like to add to. We will be adding 2 items to the list Today. The program will then print the new list with all the items after finishing.
 
