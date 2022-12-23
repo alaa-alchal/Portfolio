@@ -1,6 +1,9 @@
-# Detect the similar accounts in a list of accounts from a csv file
+# Task:
+Detect the similar accounts in a list of accounts from a csv file
 
+# Process documentation:
 The project will prompt you to choose a csv file to ingest. The file test.csv will be used for the sake of this exercise.
+![image](https://user-images.githubusercontent.com/119257994/209266969-d37fec2d-4d90-4845-b5c0-0515684ffc4b.png)
 
 The code will assess similarities of different entities accounts from the csv file. For example, the name 'Frank Jones' and 'Franky Jones' are to be considered similar.
 
