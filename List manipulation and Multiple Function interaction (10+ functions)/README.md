@@ -31,13 +31,11 @@ If you type create, the program will run the previous process again and ask you 
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209271327-943f91a7-b072-41f3-835c-33ab223248d2.png">
 
-Now you have 2 lists. You will get the 10 options of what you want at the end of each process. If you type view, the program will prompt you to enter which list would you like to display. If you type "All", the program will display all lists available:
+You will get the 10 options of what you want at the end of each process. Now if you type add, the program will ask you which list would you like to add to. We will be adding 2 items to the list Today. The program will then print the new list with all the items after finishing.
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209272870-bf49df58-df7e-470b-a983-99a40210e571.png">
 
-Now if you type add, the program will ask you which list would you like to add to. We will be adding 2 items to the list Today. The program will then print the new list with all the items after finishing.
-
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209271900-d29cf224-9405-49bd-9f57-f76a1b5d1cd5.png">
+Note that you ow you have 2 lists. If you type view, the program will prompt you to enter which list would you like to display. If you type "All", the program will display all lists available:
 
 The remaining functions are a series of actions you can take to manipulate those lists. For instance, if you choose completed, the program will take the items that start with [x]from the first 2 lists (today and someday), and add them to the list of completed items. The  [x] sign will be removed once the items are in the completed items.
 
