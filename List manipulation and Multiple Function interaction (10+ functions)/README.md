@@ -37,10 +37,11 @@ You will get the 10 options of what you want at the end of each process. Now if 
 
 Note that you ow you have 2 lists. If you type view, the program will prompt you to enter which list would you like to display. If you type "All", the program will display all lists available:
 
-The remaining functions are a series of actions you can take to manipulate those lists. For instance, if you choose completed, the program will take the items that start with [x]from the first 2 lists (today and someday), and add them to the list of completed items. The  [x] sign will be removed once the items are in the completed items.
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209273233-5322224e-07c3-41b7-ae4f-4920a778b1d1.png">
+
+The remanining options are a series of commmands which you can use to manipulate and export your lists.
 
 
 When you finish editing, you can type done, and the program will do a final print of all your lists:
-(NOTE that we did not type completed before we typed done for this excecise. I only explained what completed does)
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209272449-f60438e6-2737-45ad-be79-51037821c9e7.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209273774-ea463608-f41c-45c6-9535-50ecabcbb760.png">
