@@ -5,7 +5,7 @@ This program ingests data from 3 data sources:
 
 The program then does 2 left joins to join all the accumulated data in a single table. A sample of what the table looks like is demonstrated below:
  
-<img width="250" alt="image" src="https://user-images.githubusercontent.com/119257994/209266297-b8fe0d15-50df-4dbe-8191-51e555f2127c.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/119257994/209266297-b8fe0d15-50df-4dbe-8191-51e555f2127c.png">
 
 The program then plots 2 graphs:
 1.	The SNP500 Index and the Interest rate on one graph
