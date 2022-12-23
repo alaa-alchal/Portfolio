@@ -43,7 +43,6 @@ The remaining functions are a series of actions you can take to manipulate those
 
 
 When you finish editing, you can type done, and the program will do a final print of all your lists:
-
 (NOTE that we did not type completed before we typed done for this excecise. I only explained what completed does)
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/119257994/209272449-f60438e6-2737-45ad-be79-51037821c9e7.png">
