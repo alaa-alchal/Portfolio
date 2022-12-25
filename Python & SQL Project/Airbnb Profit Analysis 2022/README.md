@@ -44,8 +44,26 @@ Raw data:
 
 Available in the raw data are the units with distinct unit ids, number of bedrooms, unit type (private room, entire unit, etc.), price per night, avalability in the last 90 days (or vacancy to which days rented in the last 90 days = 90 - availability_90), and review scores rating for each unit.
 
+Number of units we're analyzing: 13,571 in Toronto, 12,444 units in Montreal, 4557 units in Vancouver, 3387 units in Victoria, and 1339 units in Winnepeg.
+  
+Columns taken from the raw data: 
 
+                     •	id
 
+                     •	room_type
+                     
+                     •	bathrooms_text
+                     
+                     •	beds
+                     
+                     •	price
+                     
+                     •	availability_90
+                     
+                     •	review_scores_rating
+                     
+                     •	unit_type
+                     
 
 
 
