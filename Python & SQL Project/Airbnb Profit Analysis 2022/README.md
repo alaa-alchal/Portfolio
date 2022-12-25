@@ -33,13 +33,18 @@ Me, and others who are interested in entering the Airbnb business.
   
   6. Calculate the total average monthly expenses for each city and unit type (number of bedrooms and bathrooms)
   
-  7. Join the expenses table and the Gross profit table together/
+  7. Join the expenses table and the Gross profit table together (Left join).
   
   8. Calculate your net profit.
   
-  9. Do some risk analysis; are we still generation profits if expenses increase?
+  9. Risk Analysis: How will our margins change if expenses increase by 10% and 20%?
 
 # Documentation:
+Raw data:
+
+Available in the raw data are the units with distinct unit ids, number of bedrooms, unit type (private room, entire unit, etc.), price per night, avalability in the last 90 days (or vacancy to which days rented in the last 90 days = 90 - availability_90), and review scores rating for each unit.
+
+
 
 
 
