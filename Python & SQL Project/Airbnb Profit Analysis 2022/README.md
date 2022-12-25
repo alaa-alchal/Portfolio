@@ -15,6 +15,10 @@ Which city, among the biggest Canadian cities: Toronto, Vancouver, Montreal, Vic
 
 1 and 2 bedroom units with 1, 2, or more bathrooms across the 5 Canadian cities: Toronto, Vancouver, Montreal, Victoria, and Winnipeg.
 
+# Stakeholders:
+
+Me, and others who are interested in entering the Airbnb business.
+
 # Process:
 
   1. Get the last 3 months data for every Airbnb unit on the market.
