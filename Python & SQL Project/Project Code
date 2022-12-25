@@ -1,1 +1,213 @@
+import pandas as pd
+import pandasql as ps
+# pip install -U pandasql
 
+
+def create_dataframe_from_csv(csv_file):
+    with open(csv_file, 'r') as cfile:
+        df = pd.read_csv(cfile)
+        cfile.close()
+    return df
+
+
+
+
+def city_data_summary(csv_file, city_name):
+
+    df = create_dataframe_from_csv(csv_file)
+
+    
+    sql_query1 = '''
+                    WITH clean_raw_data as
+                        (
+                            SELECT id as Unit_id,
+                                   (CASE 
+                                            WHEN room_type IN ('Entire home/apt', 
+                                                                'Hotel room') THEN 'Entire Unit'
+                                                                
+                                            WHEN room_type IN ('Private room', 
+                                                                'Shared room') THEN 'Room'
+                                            ELSE 'None'
+                                            END) AS unit_type,
+                                                               
+                                    (CASE 
+                                            WHEN bathrooms_text in ('0 shared baths', 
+                                                                    '0 baths') THEN '0'
+                                                                    
+                                            WHEN bathrooms_text in ('1 shared bath', 
+                                                                    'Shared half-bath', 
+                                                                    'Half-bath', 
+                                                                    'Private half-bath', 
+                                                                    '1.5 shared baths', 
+                                                                    '2 shared baths', 
+                                                                    '2.5 shared baths', 
+                                                                    '3 shared baths', 
+                                                                    '3.5 shared baths', 
+                                                                    '4 shared baths', 
+                                                                    '4.5 shared baths', 
+                                                                    '5 shared baths', 
+                                                                    '8 shared baths') THEN '0.5' 
+                                                                    
+                                            WHEN bathrooms_text in ('1 bath', 
+                                                                    '1 private bath') THEN '1' 
+                                                                    
+                                            WHEN bathrooms_text = '1.5 baths' THEN '1.5' 
+                                            
+                                            WHEN bathrooms_text = '2 baths' THEN '2' 
+                                            
+                                            WHEN bathrooms_text in ('2.5 baths', 
+                                                                    '3 baths', 
+                                                                    '3.5 baths', 
+                                                                    '4 baths', 
+                                                                    '4.5 baths', 
+                                                                    '5 baths', 
+                                                                    '5.5 baths', 
+                                                                    '6 baths', 
+                                                                    '6.5 baths', 
+                                                                    '7 baths', 
+                                                                    '7.5 baths', 
+                                                                    '8 baths', 
+                                                                    '9 baths') THEN '2+' 
+                                            ELSE 'None'  
+                                            END) AS baths, 
+                                            
+                                       beds as bedrooms,
+                                       
+                                       CAST(price as INT) as Price,
+                                       
+                                       ROUND((90 - availability_90)/3, 1) AS days_rented_per_month,
+                                       
+                                       review_scores_rating as average_reviews
+                                       
+                                       FROM df
+                             )
+                    SELECT bedrooms, 
+                           baths,
+                           unit_type,
+                           ROUND(AVG(average_reviews),2) AS average_reviews,
+                           ROUND(AVG(days_rented_per_month),2) AS average_days_rented_per_month,
+                           ROUND(AVG(price),2) AS average_price_per_day
+                    
+                    FROM clean_raw_data
+                    GROUP BY bedrooms, baths, unit_type
+                                                        '''
+#NULL values from AVG(average_reviews) AS average_reviews, are excluded by default
+
+    new_df = ps.sqldf(sql_query1)
+        
+    sql_query2 = '''
+                    SELECT bedrooms,
+                           baths,
+                           unit_type,
+                           average_reviews,
+                           average_days_rented_per_month,
+                           average_price_per_day
+                    FROM new_df
+                    WHERE bedrooms IN ('1', '2') AND baths IN ('1', '2', '2+') AND unit_type = 'Entire Unit'
+    
+                                '''
+    new_new_df = ps.sqldf(sql_query2)
+    new_new_df['City'] = city_name
+
+    
+    return new_new_df
+
+
+
+
+def export_df_to_csv(df, file_name):
+    df.to_csv(file_name, encoding='utf-8', index=False)
+    
+# export_df_to_csv(city_data_summary('listings_toronto.csv', "Toronto"), "test4.csv")
+    
+    
+def main():
+    
+    montreal_data = city_data_summary('listings_montreal.csv', "Montreal")
+    toronto_data = city_data_summary('listings_toronto.csv', "Toronto")
+    vancouver_data = city_data_summary('listings_vancouver.csv', "Vancouver")
+    victoria_data = city_data_summary('listings_victoria.csv', "Victoria")
+    winnipeg_data = city_data_summary('listings_winnipeg.csv', "Winnipeg")
+    
+    sql_query1 = '''
+                    WITH all_cities_data as (
+                                                SELECT City,
+                                                       bedrooms,
+                                                       baths,
+                                                       unit_type,
+                                                       average_reviews,
+                                                       average_days_rented_per_month,
+                                                       average_price_per_day
+                                                FROM montreal_data
+
+                                                UNION ALL
+
+                                                SELECT City,
+                                                       bedrooms,
+                                                       baths,
+                                                       unit_type,
+                                                       average_reviews,
+                                                       average_days_rented_per_month,
+                                                       average_price_per_day
+                                                FROM toronto_data
+
+                                                 UNION ALL
+
+                                                SELECT City,
+                                                       bedrooms,
+                                                       baths,
+                                                       unit_type,
+                                                       average_reviews,
+                                                       average_days_rented_per_month,
+                                                       average_price_per_day
+                                                FROM vancouver_data
+
+                                                UNION ALL
+
+                                                SELECT City,
+                                                       bedrooms,
+                                                       baths,
+                                                       unit_type,
+                                                       average_reviews,
+                                                       average_days_rented_per_month,
+                                                       average_price_per_day
+                                                FROM victoria_data
+
+                                                UNION ALL
+
+                                                SELECT City,
+                                                       bedrooms,
+                                                       baths,
+                                                       unit_type,
+                                                       average_reviews,
+                                                       average_days_rented_per_month,
+                                                       average_price_per_day
+                                                FROM winnipeg_data
+
+                                                ORDER BY City
+                                                    )
+                                                    
+                        SELECT City, 
+                               unit_type, 
+                               bedrooms, 
+                               baths, 
+                               average_price_per_day, 
+                               average_days_rented_per_month, 
+                               
+                               ROUND(
+                                   CAST(average_price_per_day AS DECIMAL(7,2)) * 
+                                   CAST(average_days_rented_per_month AS DECIMAL(7,2)), 
+                                       2) AS monthly_revenue,
+                                       
+                               average_reviews
+                        
+                        FROM all_cities_data
+                        
+                        ORDER BY bedrooms, baths, average_price_per_day
+
+                                                                '''
+    final_df = ps.sqldf(sql_query1)
+    export_df_to_csv(final_df, "test5.csv")
+  
+    
+main()
