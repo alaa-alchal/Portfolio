@@ -42,3 +42,12 @@ Me, and others who are interested in entering the Airbnb business.
 # Documentation:
 
 
+
+
+
+
+
+# Data Source:
+
+http://insideairbnb.com
+
