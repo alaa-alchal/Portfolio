@@ -97,11 +97,11 @@ Below is a sample of the second set of data:
 
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209485239-7ff33589-4443-42bc-abe8-51835bab3c88.png">
 
-Now we need to isolate the data we're interested in; i.e. 1 and 2 bedroom units with 1 or more bathrooms.
+Now we need to isolate the data we're interested in; i.e. 1 and 2 bedroom units with 1 or 2 bathrooms.
 
 Below is a sample of the third set of data (I took Montreal's data for the sake of this representation):
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209485457-9a617c69-9527-450c-b2b3-8981ba53341b.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209492169-1ce76602-e39b-4a4f-a282-fe611fd6cc8a.png">
 
 The following step is compiling the data for all five cities and ordering them by bedrooms, and baths:
 
@@ -111,7 +111,7 @@ Below is a sample of the fourth set of data:
 
 (Notice how Winnipeg is the cheapest rental for every combination of bedrooms and baths, and Montreal is the second cheapest option)
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209485599-50eff753-b672-4cfb-8990-8f4128a51162.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209492974-4732cd1c-b3bb-4522-977a-4a7fc19e7f16.png">
 
 Now we need to calculate the monthly estimated gross revenue by multiplying price charged per day by average days rented per month:
 
@@ -119,7 +119,7 @@ Now we need to calculate the monthly estimated gross revenue by multiplying pric
 
 Below is a sample of the fifth set of data:
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209485908-ffb6cf66-a67d-447d-bd46-b64c0ec11da5.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209493151-ba83679e-cc8c-41ec-8885-10ddd004f5d3.png">
 
 
 # Data Source:
