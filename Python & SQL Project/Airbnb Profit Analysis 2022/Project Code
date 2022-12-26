@@ -10,8 +10,6 @@ def create_dataframe_from_csv(csv_file):
     return df
 
 
-
-
 def city_data_summary(csv_file, city_name):
 
     df = create_dataframe_from_csv(csv_file)
@@ -279,7 +277,6 @@ def main():
             ORDER BY units_for_six_figures ASC
                    
                                                                           '''
-    
     
     tables_merged = ps.sqldf(sql_query2)
     
