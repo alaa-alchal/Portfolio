@@ -115,7 +115,7 @@ Below is a sample of the fourth set of data:
 
 Now we need to calculate the monthly estimated gross revenue by multiplying price charged per day by average days rented per month:
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209493515-a3392ef9-d2e3-4d7b-87af-0ae7589cbfdd.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209510408-8ac7aab5-064b-4364-b63a-df1e97695d27.png">
 
 Below is a sample of the fifth set of data:
 
