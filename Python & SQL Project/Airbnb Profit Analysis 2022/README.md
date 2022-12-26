@@ -2,7 +2,7 @@
 
 I am combining my SQL and Python knowledge in one project.
 
-The project aims to analyze the Airbnb market, and see if renting units and listing them on Airbnb can be profitable in various Canadian major cities.
+The project aims to analyze the Airbnb market, to find out if renting units and listing them on Airbnb can be profitable in various Canadian major cities.
 
 # Research Questions:
 
