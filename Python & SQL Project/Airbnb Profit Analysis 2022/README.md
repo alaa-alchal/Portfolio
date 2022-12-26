@@ -119,7 +119,8 @@ Now we need to calculate the monthly estimated gross revenue by multiplying pric
 
 Below is a sample of the fifth set of data:
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209493607-07db78d9-759d-4d26-9979-cd315368b7a8.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209494057-c4be0d4f-b319-4cc2-b84d-4f9e70e159c3.png">
+
 
 
 # Data Source:
