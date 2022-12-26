@@ -1,6 +1,6 @@
 # Project:
 
-I am combining my SQL and Python knowledge to create a business analysis project.
+I am combining my SQL and Python knowledge in one project.
 
 The project aims to analyze the Airbnb market, and see if renting units and listing them on Airbnb can be profitable in various Canadian major cities.
 
