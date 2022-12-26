@@ -10,7 +10,7 @@ Is entering the Airbnb market a profitable in 2022-2023?
 
 If yes, how many Airbnb units are needed to generate a 100,000 CAD per year?
 
-If expenses, including rent, go up by 10%, would it still be profitable, and how many units would then be needed to generate a 100,000 CAD per year? How about 20%?
+If expenses, including rent, go up by 10%, would it still be profitable, and how many units would then be needed to generate a 100,000 CAD per year?
 
 Which city, among the biggest Canadian cities: Toronto, Vancouver, Montreal, Victoria, and Winnipeg, is the most profitable?
 
@@ -40,7 +40,7 @@ Me, and others who are interested in entering the Airbnb business.
   
   8. Calculate your net profit.
   
-  9. Risk Analysis: How will our margins change if expenses increase by 10% and 20%?
+  9. Risk Analysis: How will our margins change if expenses increase by 10%? I will not calculate scenarios if rent increases by more than 10% because it is        unrealistic for rent to increase by that percentage in a 12-months period which is the rental period for most rental units.
 
 # Documentation:
 Raw data:
@@ -117,9 +117,89 @@ Now we need to calculate the monthly estimated gross revenue by multiplying pric
 
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209510408-8ac7aab5-064b-4364-b63a-df1e97695d27.png">
 
-Below is a sample of the fifth set of data:
+Below is a sample of the fifth set of data stored in revenue_summary:
 
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209494057-c4be0d4f-b319-4cc2-b84d-4f9e70e159c3.png">
+
+Now we have our gross revenue, and we need our expenses.
+
+I did not find a reliable source to extract raw data and calulate the average rent for each unut type (1 bed 1 bath unit in Toronto for example), so i did some research and found estimates for all expenses including rent (date for the expenses is December 26, 2022).
+
+This are the estimated monthly expenses stores in Expenses.csv:
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209511106-7716459e-0317-4d42-bcfb-518319ce1215.png">
+
+Now we need to combine the tables in revenue_summary and Expenses.csv to calculate our net profit, so we need a unique column on each table to perform the join.
+
+I concatenated the City, unit_type, bedrooms, and baths column on each table for the unique column, and now i am able to perform the join.
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209513343-1e9c3cdf-6d1c-4db4-b571-adc3c6de8a28.png">
+
+I am going to choose left join with profit_table as my left table because i need to find the expenses for the existing records for the left table not the other way around. Below is the code demo:
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209512926-288c7e18-c432-45e8-82d4-b274496c2593.png">
+
+The table below is my table after performing a left join and estimating monthly and annual revenue:
+
+(Notice that some of the rows have a negative revenue. These will be excluded for the remaining calculations.)
+
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/119257994/209512877-12f45905-e76f-4662-b5df-b9bebeb5263a.png">
+
+Now that we have our net revenue per unit per annum, we can calculate how many units we need to rent to generate 100,000 CAD per year. Below is the code demo:
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209513927-cf943ae6-599a-4b90-a1cb-ebc71576153a.png">
+
+This is the table with the units required to generate 100,000 CAD for the scenarios generating positive net revenue:
+
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/119257994/209514160-304b41ab-c498-455f-a693-e176f2047e63.png">
+
+Notice that the most profitable rentals are 1 bedroom and 2 bathroom units in Winnipeg and Toronto with 10.7 units and 11.4 units to generate 100,000 CAD respectively.
+
+Now what if rent increases by 10%? Where will we still be able to generate profit? 
+
+To calculate that, I subtracted a further (0.1 * e.'Monthly Rent') from the net monthly profit, and repeated my estimations. Below is the code demo:
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209516265-72f44787-f2c2-47ae-b5f3-c1c49932777c.png">
+
+This is my final table with the increased rent:
+
+<img width="1800" alt="image" src="https://user-images.githubusercontent.com/119257994/209516524-26650dec-0f66-4d52-ac27-77b3c84758a5.png">
+
+
+[data.csv](https://github.com/alaa-alchal/Portfolio/files/10302145/data.csv)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
