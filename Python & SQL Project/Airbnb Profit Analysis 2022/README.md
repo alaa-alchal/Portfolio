@@ -165,9 +165,12 @@ This is my final table with the increased rent:
 
 <img width="1800" alt="image" src="https://user-images.githubusercontent.com/119257994/209516524-26650dec-0f66-4d52-ac27-77b3c84758a5.png">
 
-
+You can download the data table here for better visibility:
 [data.csv](https://github.com/alaa-alchal/Portfolio/files/10302145/data.csv)
 
+Notice that the number of units needed for a 1 bedroom and 2 bathroom unit has increased from 10.7 to 12.9 units. Similarly the rent for a 1 bedroom and 2 bathroom unit in Toronto has increased from 11.4 to 18.2 units. 
+
+Notice that some of the numbers are negative in scenarios such as 2 bedroom and 2 bathroom units Montreal, and that in because the investment is no longer generating positive profit when the rent increases by 10%.
 
 
 
