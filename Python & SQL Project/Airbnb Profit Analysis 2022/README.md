@@ -180,6 +180,9 @@ The lowest risk investment is Winnipeg with only a 20.6% increase in the number 
 
 <img width="1200" alt="image" src="https://user-images.githubusercontent.com/119257994/209518927-718d60e2-52d2-4d04-9220-04b1d48d695e.png">
 
+You can download the data table here for better visibility: 
+[data.csv](https://github.com/alaa-alchal/Portfolio/files/10302261/data.csv)
+
 # Data Source:
 
 http://insideairbnb.com
