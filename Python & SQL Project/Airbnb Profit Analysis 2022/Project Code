@@ -281,7 +281,7 @@ def main():
     tables_merged = ps.sqldf(sql_query2)
     
     
-    export_df_to_csv(tables_merged, "test5.csv")
+    export_df_to_csv(tables_merged, "findings.csv")
     
     
 main()
