@@ -172,39 +172,13 @@ Notice that the number of units needed for a 1 bedroom and 2 bathroom unit has i
 
 Notice that some of the numbers are negative in scenarios such as 2 bedroom and 2 bathroom units Montreal, and that in because the investment is no longer generating positive profit when the rent increases by 10%.
 
+# Recommendation based on my Estimates:
 
+The one bedroom and two bathroom units in Winnipeg and Toronto have enough demand to cover the expenses and generate reasonable profit (9388.8 CAD, 8760 CAD, and 7939.2 CAD annually for Winnipeg, Toronto, and Victoria, respectively) for their investors. The number of units required to generate a 100,000 CAD per annum is estimated to be 10.7, 11.4, and 12.6 for Winnipeg, Toronto, and Victoria, repectively.
 
+The lowest risk investment is Winnipeg with only a 20.6% increase in the number of units required to generate a 100,000 CAD per annum, compared to 52.4% and 59.6% increase for Victoria and Toronto, respectively. This makes the one bedroom and two bathroom units in Winnipeg the best Airbnb investment in 2022.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img width="1200" alt="image" src="https://user-images.githubusercontent.com/119257994/209518927-718d60e2-52d2-4d04-9220-04b1d48d695e.png">
 
 # Data Source:
 
