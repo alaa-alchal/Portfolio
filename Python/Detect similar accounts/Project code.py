@@ -1,22 +1,27 @@
 import csv
-import difflib
-import itertools
-import copy
-
 
 def extract_from_csv(filename, column_position):
     '''a function that reads csv files and extract specific columns'''
-
+    
     with open(filename, "r", encoding='latin-1', errors='ignore') as csv_file:
         csv_reader = csv.reader(csv_file)
-
+        
         list = []
         for line in csv_reader:
             list.append(line[column_position])
-
+            
     csv_file.close()
     return list
 
+# names = extract_from_csv("test_copy.csv", 1)
+# names
+
+
+
+
+
+
+import difflib
 
 def similarity(string1, string2):
     '''a function that calculates percentage similarity between 2 strings'''
@@ -25,183 +30,247 @@ def similarity(string1, string2):
     return difference
 
 
-def assess(which_list, item_id_list):
-    '''a function that assesses similarity of items inside a list with each other
-        return: list containing smaller lists in this form [similarity [string1, string2]] where
-                string1 and string 2 are sorted in the list inside the list
-                        '''
+# text1 = 'Canada 175 BAGOT QUEBEC  G1K 9K8 '
+# text2 = '1502 - 1209 Richmond street london N6a 3L7'
+# print(similarity(text2, text1))
 
-    # 1. compare all elements to each other and return them in the form: [comparison score, [index1, index2]]
-    # we're returning the max of similarity becuase apparently similarity(x,y) != similarity(y,x)
-    new_list = []
-    for x in range(0, len(which_list)):
-        for y in range(0, len(which_list)):
-            new_list.append([[item_id_list[x], item_id_list[y]],
-                             max(similarity(which_list[x], which_list[y]), similarity(which_list[y], which_list[x])),
-                             ])
 
-    # 2. sort [index1, index2] in each list
-    for x in new_list:
-        x[0].sort()
 
-    # 3. remove lists having objects compared to each other
-    before_last = list()
-    for x in new_list:
-        if x[0][0] != x[0][1]:
-            before_last.append(x)
 
-            # 3. remove duplicate lists
-    last = []
-    for x in before_last:
-        if x not in last:
-            last.append(x)
 
-    return last
+
+
+def dict_with_similarities(dictionary):
+    ''' 0 : (('12345', '23456'), 90.9, 69.4, 88.9)
+
+        We have dictionries with elements like this:
+            0 is the comparison number
+            ('12345', '23456') are the 2 items being compared
+            each of 12345 and 23456 have 3 elements being compares;
+                1st is name to which there is 90.9% similarity
+                2nd is address to which there is 69.4% similarity
+                3rd is city to which there is 88.9& similarity 
+                                                                    '''
+    new_dict = dict()
+    
+    for x, y in dictionary.items():
+        if y[1] >= 60 and y[2] >= 60 and y[3] >= 60:
+            new_dict[x] = y
+            
+
+    return new_dict
+
+# sss = {    
+#             0 : (['item1', 'item2'], 50, 70, 70), 
+#             1 : (['item3', 'item4'], 60, 100, 70),
+#             2 : (['item2', 'item5'], 90, 90, 90)
+#         }
+
+# dict_with_similarities(sss)
+
+
+
+
+
+
+
+import itertools
 
 
 def list_merge(list_of_lists):
     '''merges lists which have common elements
        Source: Stack overflow (The only code taken from the web)'''
-
-    LL = set(itertools.chain.from_iterable(list_of_lists))
-    # LL is {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'k', 'o', 'p'}
+    
+    LL = set(itertools.chain.from_iterable(list_of_lists)) 
+# LL is {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'k', 'o', 'p'}
     for each in LL:
         components = [x for x in list_of_lists if each in x]
         for i in components:
             list_of_lists.remove(i)
         list_of_lists += [list(set(itertools.chain.from_iterable(components)))]
 
+    
     return list_of_lists
 
 
+# L = [['a','b','c'],['b','d','e'],['k'],['o','p'],['e','f'],['p','a'],['d','g']]
+# print(list_merge(L))
+
+
+
+
+
+
+
+
+
+
+
+
+import csv
+
 def write_to_file(list_to_export):
     '''Exports the list in param to a file.'''
-
+    
+    
+    #Getting the number of columns needed for titles to add titles for as long as the longest amount of 
+    #duplicates in one row
+    def get_longest_list(lst):
+        return max(lst, key=len)
+    longest_list = get_longest_list(list_to_export)
+    number_of_columns = len(longest_list)
+    
+    
+    #Now creating the row that is supposed to represent the column titles in the csv
+    titles_list = []
+    for x in range(1, number_of_columns+1):
+        titles_list.append(f'Duplicate ID{x}')
+    
+    
+    #Now to the actual writing to file
     typo = False
     while typo == False:
         question = input("Would you like to export the duplicates into a csv? y/n\n")
         if question.lower() == "y":
-            question2 = str(
-                input("What would you like to name your csv file? (do not include .csv at the end)\n")) + ".csv"
-            # add titles to csv export
-            list_to_export.insert(0, ["Duplicate ID1", "Duplicate ID2", "Duplicate ID3"])
-
-            # export the csv with name: Duplicates_list.csv
+            question2 = str(input("What would you like to name your csv file? (do not include .csv at the end)\n")) + ".csv"
+            #add titles to csv export
+            list_to_export.insert(0, titles_list)
+    
+            #export the csv with name: Duplicates_list.csv
             with open(question2, "w", newline="") as AAA:
                 writer = csv.writer(AAA)
                 writer.writerows(list_to_export)
-
+                
             typo = True
-
-        # I can remove the next 2 lines but i kept them
-        elif question.lower() == "n":
+            
+        #I can remove the next 2 lines but i kept them
+        elif question.lower() == "n": 
             typo = True
-
+            
         else:
             print("The input is invalid!")
-            print("Please try again: enter y or n \n")
+            print("Please try again: [Enter y or n] \n")
 
-
-class Data:
-    '''creating a class called data to which i will add the objects: series, dba, address, and city'''
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+           
+        
+        
+        
+ import copy
 
 
 def main():
     '''function that will return a final list of which accounts are similar'''
-    csv_file_to_clean = input("Enter file name: \n").lower()
-    print('\n')
+    csv_file_to_clean = "test_copy.csv"
+    
 
-    # 1. create a serial number attribute if you don't have IDs(every account will have an assigned unique number)
-    #     series = Data()
-    #     series.serial_number = list()
-    #     for x in range(0,len(extract_from_csv(csv_file_to_clean, 0))):
-    #          series.serial_number.append("s"+str(x))
+# 1. create a dictionary with Id as key and a tuple containing Name, address, and city as value.
+   
+    
+    data_dict = dict()
+    
+    for x in range(1, len(extract_from_csv(csv_file_to_clean, 0))):
+        data_dict[extract_from_csv(csv_file_to_clean, 0)[x]] = (extract_from_csv(csv_file_to_clean, 1)[x], 
+                                                                extract_from_csv(csv_file_to_clean, 2)[x], 
+                                                                extract_from_csv(csv_file_to_clean, 3)[x]
+                                                                   )
+#     for x in data_dict.items():
+#         print(f'{x[0]} : {x[1]}\n')
+        
+#     print(len(data_dict["12345"])) #length of elements in each item
 
-    # create an id number attribute since we have IDs
-    identification = Data()
-    identification.mid_list = extract_from_csv(csv_file_to_clean, 3)
+    
+# 2. Create a list containing tuples of the elements in the dictionary that you want to compare
+    
+    important_note = '''
+            for x in data_dict.items():
+                for y in data_dict.items():
+                    print(f'{x[0]} : {y[0]}')
 
-    # 2. create a dba object with an attribute called names_list.
-    dba = Data()
-    dba.name_list = extract_from_csv(csv_file_to_clean, 0)
+            Notice here that we are comparing 12345 to 23456 then again we are comparing 23456 to 12345.
+            We are also comparing 12345 to 12345.
+            The number of comparisons in this double loop is 7^2 = 49 while only 21 are required.
+               We need go find a way to optimize the code by not performing the same comparisons twice
+               or comparing the same items.
+    
+    print(round(100-21/49*100, 2))
+    these will have a 57.14% increase in efficiency
+    
+    The steps below remove repetitions and same-item comparisons:                   '''
+                                                
+    keys_list = list(data_dict.keys())
 
-    # adding another attribute with dba.name_list names compared to each other
-    dba.dba_compared = assess(dba.name_list[1:], identification.mid_list[1:])
+    who_to_compare_to = list()
+        
+    for x, y in enumerate(keys_list):
+        for z in keys_list[x:]:
+            if y == z:
+                continue
+            else:
+                who_to_compare_to.append((y, z))
 
-    print("List of percentages of DBAs compared:\n")
-    for x in dba.dba_compared:
-        print(x)
-    print("\n")
+#     for x in who_to_compare_to:
+#         print(x)
+        
+    
+# 3. compare dictionary elemenets together and store comparisons in another dictionary
 
-    # 3. create the address object with an attribute called addresses_list.
-    address = Data()
-    address.addresses_list = extract_from_csv(csv_file_to_clean, 1)
+    comparison = 0 #assigning serial numbers to comparisons because we can't store the 2 items being compared
+                   # in a list as Key to the dictionary
 
-    # adding another attribute with dba.name_list names compared to each other
-    address.addresses_compared = assess(address.addresses_list[1:], identification.mid_list[1:])
+    comparisons_dict = dict()
+    
+    for x in who_to_compare_to:
+        comparisons_dict[comparison] = (
+                                            [x[0], x[1]],
+                                            similarity(data_dict[x[0]][0],data_dict[x[1]][0]),
+                                            similarity(data_dict[x[0]][1],data_dict[x[1]][1]),
+                                            similarity(data_dict[x[0]][2],data_dict[x[1]][2])
+                                        )
+        comparison += 1
+    
+    
+#     for x, y in comparisons_dict.items():
+#         print(f'{x} : {y}\n')
+    
+    
+# 5. Creating a new dictionary with only items that have similarities included
 
-    print("List of percentages of adresses compared:\n")
-    for x in address.addresses_compared:
-        print(x)
-    print("\n")
-
-    # 4. create the address object with an attribute called addresses_list.
-    city = Data()
-    city.cities_list = extract_from_csv(csv_file_to_clean, 2)
-
-    # adding another attribute with dba.name_list names compared to each other
-    city.cities_compared = assess(city.cities_list[1:], identification.mid_list[1:])
-
-    print("List of percentages of cities compared:\n")
-    for x in city.cities_compared:
-        print(x)
-    print("\n")
-
-    # 5. create one list with all similarity percetages
-
-    all_comparisons = Data()  # create object to add a list to it as an attribute
-    all_comparisons.final_list = copy.deepcopy(dba.dba_compared)  # dba percentages to the final list
-
-    for x in all_comparisons.final_list:  # address percentages to the final list
-        for y in address.addresses_compared:
-            if x[0] == y[0]:
-                x.append(y[1])
-
-    for x in all_comparisons.final_list:  # city percentages to the final list
-        for y in city.cities_compared:
-            if x[0] == y[0]:
-                x.append(y[1])
-
-    print("Percentages all combined list:\n")
-    for x in all_comparisons.final_list:
-        print(x)
-    print("\n")
-
-    # 6. Assessment of who are actually duplicates (60+% similarity on everything)
+    similar_items = dict_with_similarities(comparisons_dict)
+        
+        
+# 5. Storing the elements that are similar in a list of lists   
+    
     list_of_duplicates = []
-    for x in all_comparisons.final_list:
-        if x[1] >= 60 and x[2] >= 60 and x[3] >= 60:
-            list_of_duplicates.append(x[0])
-
-    print("List of accounts which had similarities:\n")
+    
+    for x, y in similar_items.items():
+        list_of_duplicates.append(y[0])
+    
     for x in list_of_duplicates:
         print(x)
-    print("\n")
+        
+    print('\n')
+# 6. Consolidate the duplicate accounts in a common list (final step before export)
 
-    # 7. Consolidate the duplicate accounts in a common list (final step before export)
     list_merge(list_of_duplicates)
-
-    # the next 2 lines are optional (will be removed from the code after)
-    for x in list_of_duplicates:
-        x.sort()
-
-    print("\nHere's the final list of duplicates:\n")
+         
     for x in list_of_duplicates:
         print(x)
-
-    # 8. Export the duplicates in a csv file:
-    write_to_file(list_of_duplicates)
-
-
+        
+        
+# 7. Export the duplicates in a csv file:
+    write_to_file(list_of_duplicates)        
+        
+        
 main()
-# Enter: test.csv for file name
