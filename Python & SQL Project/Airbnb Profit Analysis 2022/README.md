@@ -12,7 +12,7 @@ If yes, how many Airbnb units are needed to generate a 100,000 CAD per year?
 
 If expenses, including rent, go up by 10%, would it still be profitable, and how many units would then be needed to generate a 100,000 CAD per year?
 
-Which, among the biggest Canadian cities: Toronto, Vancouver, Montreal, Victoria, and Winnipeg, is the most profitable?
+Which, among the Canadian major cities: Toronto, Vancouver, Montreal, Victoria, and Winnipeg, is the most profitable?
 
 # Research of interest:
 
