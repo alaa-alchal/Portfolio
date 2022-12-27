@@ -8,7 +8,7 @@ Find a way to compare all accounts without repetition to make the code as effici
 # Process documentation:
 The project will prompt you to choose a csv file to ingest. The file test.csv will be used for the sake of this exercise.
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/119257994/209266969-d37fec2d-4d90-4845-b5c0-0515684ffc4b.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/119257994/209613262-8d9ba60e-644b-4e50-97f7-12bb0c5335c5.png">
 
 The csv file looks like this:
 
