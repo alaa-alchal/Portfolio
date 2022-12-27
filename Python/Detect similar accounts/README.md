@@ -1,7 +1,7 @@
 # Task:
 Detect the similar accounts in a list of accounts from a csv file.
 
-# challenge:
+# Challenge:
 
 Find a way to compare all accounts without repetition to make the code as efficient as it can be.
 
