@@ -167,12 +167,12 @@ def write_to_file(list_to_export):
         
         
         
- import copy
+import copy
 
 
 def main():
     '''function that will return a final list of which accounts are similar'''
-    csv_file_to_clean = "test_copy.csv"
+    csv_file_to_clean = input("Enter file name:\n")
     
 
 # 1. create a dictionary with Id as key and a tuple containing Name, address, and city as value.
@@ -188,11 +188,11 @@ def main():
 #     for x in data_dict.items():
 #         print(f'{x[0]} : {x[1]}\n')
         
-#     print(len(data_dict["12345"])) #length of elements in each item
 
     
 # 2. Create a list containing tuples of the elements in the dictionary that you want to compare
     
+
     important_note = '''
             for x in data_dict.items():
                 for y in data_dict.items():
@@ -204,10 +204,8 @@ def main():
                We need go find a way to optimize the code by not performing the same comparisons twice
                or comparing the same items.
     
-    print(round(100-21/49*100, 2))
-    these will have a 57.14% increase in efficiency
-    
-    The steps below remove repetitions and same-item comparisons:                   '''
+    The steps below remove repetitions and same-item comparisons:                   
+                                                                    '''
                                                 
     keys_list = list(data_dict.keys())
 
@@ -228,7 +226,7 @@ def main():
 
     comparison = 0 #assigning serial numbers to comparisons because we can't store the 2 items being compared
                    # in a list as Key to the dictionary
-
+    
     comparisons_dict = dict()
     
     for x in who_to_compare_to:
@@ -248,7 +246,9 @@ def main():
 # 5. Creating a new dictionary with only items that have similarities included
 
     similar_items = dict_with_similarities(comparisons_dict)
-        
+    
+#     for x, y in similar_items.items():
+#          print(f'{x} : {y}\n')
         
 # 5. Storing the elements that are similar in a list of lists   
     
@@ -257,18 +257,24 @@ def main():
     for x, y in similar_items.items():
         list_of_duplicates.append(y[0])
     
-    for x in list_of_duplicates:
-        print(x)
-        
-    print('\n')
-# 6. Consolidate the duplicate accounts in a common list (final step before export)
+#     print(list_of_duplicates)
+    
+#     for x in list_of_duplicates:
+#         print(x)
+    
+
+    # 6. Consolidate the duplicate accounts in a common list (final step before export)
 
     list_merge(list_of_duplicates)
-         
+    
+    print('\n\n')
+    print("Here's a list of your duplicates:")
+    print('\n')
     for x in list_of_duplicates:
         print(x)
-        
-        
+    print('\n')
+
+
 # 7. Export the duplicates in a csv file:
     write_to_file(list_of_duplicates)        
         
