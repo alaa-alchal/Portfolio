@@ -10,8 +10,6 @@ def create_dataframe_from_csv(csv_file):
     return df
 
 
-
-
 def city_data_summary(csv_file, city_name):
 
     df = create_dataframe_from_csv(csv_file)
@@ -103,7 +101,7 @@ def city_data_summary(csv_file, city_name):
                            average_days_rented_per_month,
                            average_price_per_day
                     FROM new_df
-                    WHERE bedrooms IN ('1', '2') AND baths IN ('1', '2', '2+') AND unit_type = 'Entire Unit'
+                    WHERE bedrooms IN ('1', '2') AND baths IN ('1', '2') AND unit_type = 'Entire Unit'
     
                                 '''
     new_new_df = ps.sqldf(sql_query2)
@@ -189,7 +187,7 @@ def main():
                                                     
                         SELECT City, 
                                unit_type, 
-                               bedrooms, 
+                               CAST(bedrooms AS INT) AS bedrooms, 
                                baths, 
                                average_price_per_day, 
                                average_days_rented_per_month, 
@@ -197,17 +195,93 @@ def main():
                                ROUND(
                                    CAST(average_price_per_day AS DECIMAL(7,2)) * 
                                    CAST(average_days_rented_per_month AS DECIMAL(7,2)), 
-                                       2) AS monthly_revenue,
+                                       0) AS monthly_gross_revenue,
                                        
                                average_reviews
                         
                         FROM all_cities_data
                         
-                        ORDER BY bedrooms, baths, average_price_per_day
+                        ORDER BY City
 
-                                                                '''
-    final_df = ps.sqldf(sql_query1)
-    export_df_to_csv(final_df, "test5.csv")
-  
+                                                                        '''
+    
+    revenue_summary = ps.sqldf(sql_query1)
+    
+    revenue_summary['key'] = revenue_summary['City'] + "-" \
+                           + revenue_summary['unit_type'] + "-" \
+                           + revenue_summary['bedrooms'].astype(str) + "-" \
+                           + revenue_summary['baths'].astype(str)
+    
+    
+    expenses_csv = create_dataframe_from_csv('Expenses.csv')
+    
+    
+    
+    expenses_csv['total_monthly_expenses'] = expenses_csv['Monthly Rent']\
+                                           + expenses_csv['Cleaning']\
+                                           + expenses_csv['Hydro']\
+                                           + expenses_csv['Internet']\
+                                           + expenses_csv['Snacks']\
+        
+    expenses_csv['key'] = expenses_csv['City'] + "-" \
+                        + expenses_csv['unit_type'] + "-" \
+                        + expenses_csv['bedrooms'].astype(str) + "-" \
+                        + expenses_csv['baths'].astype(str)  
+    
+        
+    sql_query2 = '''
+    
+            WITH profit_table AS 
+                  (
+                    SELECT r.City, 
+                            r.unit_type, 
+                            r.bedrooms, 
+                            r.baths, 
+                            r.average_reviews,
+                            r.monthly_gross_revenue,
+                            e.total_monthly_expenses,
+                            e.'Monthly Rent',
+                            (r.monthly_gross_revenue - e.total_monthly_expenses) AS net_monthly_revenue,
+                            (r.monthly_gross_revenue - e.total_monthly_expenses)*12 AS net_annual_revenue,
+                            (r.monthly_gross_revenue - e.total_monthly_expenses - 0.1 * e.'Monthly Rent') 
+                                        AS net_monthly_revenue_with_rent_increase,
+                            (r.monthly_gross_revenue - e.total_monthly_expenses - 0.1 * e.'Monthly Rent')*12 
+                                        AS net_annual_revenue_with_rent_increase
+                                                               
+
+                        FROM revenue_summary AS r
+    
+                        LEFT JOIN expenses_csv e ON r.key=e.key
+                                                                )
+                
+            
+            SELECT City,
+                   unit_type,
+                   bedrooms,
+                   baths,
+                   average_reviews,
+                   net_monthly_revenue,
+                   net_annual_revenue,
+                   ROUND(100000/net_annual_revenue,1) AS units_for_six_figures,
+                   net_monthly_revenue_with_rent_increase,
+                   net_annual_revenue_with_rent_increase,
+                   ROUND(100000/net_annual_revenue_with_rent_increase,1) 
+                           AS units_for_six_figures_if_rent_increases
+                   
+                   
+                 
+            FROM profit_table 
+            
+            WHERE net_monthly_revenue > 0
+            
+            ORDER BY units_for_six_figures ASC
+                   
+                                                                          '''
+    
+    tables_merged = ps.sqldf(sql_query2)
+    
+    
+    export_df_to_csv(tables_merged, "findings.csv")
+    
     
 main()
