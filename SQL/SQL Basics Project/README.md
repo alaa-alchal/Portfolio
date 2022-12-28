@@ -1,3 +1,34 @@
+# Topic:
+
+Exploring and analyzing a data set using SQL.
+
+# Subject:
+
+The data set consists of several tables containing information about sales, products, and customers, and we've been using various SQL queries to answer questions about the data.
+
+I will create tables and fill them from scratch before I start answering the questions, so there is no data table needed to run the codes.
+
+These are the questions we're covering:
+
+1. Write a query to calculate the total sales revenue between '2022-01-01' and '2022-01-31':
+
+2. Write a query to determine the top selling products. 
+
+3. Write a query to find the customers who have spent the most money overall:
+
+4. Write a query to calculate the average purchase value for each customer. 
+
+5. Write a query to find customers who have made more than 2 purchases. 
+
+6. Write a query to find the most popular product among customers who have spent more than 100 dollars. 
+
+7. Write a query to find the most popular product category. 
+
+8. Write a query to find the products that have the highest profit margin:
+
+
+# Project Code:
+
 To get started, we'll need to create some tables to store our data. We'll start by creating a customers table to store information about our customers, such as their name and email address.
 
     CREATE TABLE customers (
@@ -126,7 +157,6 @@ Questions:
         GROUP BY c.customer_id
         
         ORDER BY total_spent DESC;
-
 
 
 4. Write a query to calculate the average purchase value for each customer. 
