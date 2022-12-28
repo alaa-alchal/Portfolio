@@ -87,8 +87,11 @@ and this was our original dataset if you want to do a visual comparison:
 
 <img width="900" alt="image" src="https://user-images.githubusercontent.com/119257994/209607506-c9f36e88-689f-48e0-9324-8915c33fcad0.png">
 
+# Speed
 
+Checking 200 accounts takes anywhere between 3-5 seconds.
 
+Checking 1000 accounts takes aywhere between 4-5 minutes.
 
 
 
