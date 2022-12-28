@@ -183,7 +183,7 @@ The lowest risk investment is Winnipeg with only a 20.6% increase in the number 
 You can download the data table here for better visibility: 
 [data.csv](https://github.com/alaa-alchal/Portfolio/files/10302261/data.csv)
 
-<img width="1200" alt="image" src="https://user-images.githubusercontent.com/119257994/209826112-53647a5d-03c5-4d56-bc7c-91fa443a7e31.png">
+<img width="1200" alt="image" src="https://user-images.githubusercontent.com/119257994/209827156-deca9468-6b7e-4c63-b999-d3ee1ea0f060.png">
 
 # Data Source:
 
