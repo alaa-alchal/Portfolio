@@ -1,7 +1,3 @@
-# Topic:
-
-Exploring and analyzing a data set using SQL.
-
 # Subject:
 
 The data set consists of several tables containing information about sales, products, and customers, and we've been using various SQL queries to answer questions about the data.
