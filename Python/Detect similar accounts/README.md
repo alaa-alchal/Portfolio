@@ -91,7 +91,7 @@ and this was our original dataset if you want to do a visual comparison:
 
 Checking 200 accounts takes anywhere between 3-5 seconds.
 
-Checking 1000 accounts takes aywhere between 4 and 7 minutes.
+Checking 1000 accounts takes aywhere between 4-5 minutes.
 
 
 
