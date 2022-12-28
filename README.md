@@ -2,7 +2,7 @@
 
 Most significant projects: 
 
-          •	Airbnb Profit Analysis 2022:
+          •	Airbnb Rental Analysis 2022:
             can be found inside the folder: Python & SQL
                           
           •	Detect similar accounts:
