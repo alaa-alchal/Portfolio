@@ -20,21 +20,15 @@ def extract_from_csv(filename, column_position):
 
 
 
-
 import difflib
 
 def similarity(string1, string2):
     '''a function that calculates percentage similarity between 2 strings'''
-    sequence = difflib.SequenceMatcher(isjunk=None,a=string1.lower(),b=string2.lower())
-    difference = round(sequence.ratio()*100,1)
-    return difference
-
-
-# text1 = 'Canada 175 BAGOT QUEBEC  G1K 9K8 '
-# text2 = '1502 - 1209 Richmond street london N6a 3L7'
-# print(similarity(text2, text1))
-
-
+    sequence = difflib.SequenceMatcher(isjunk=None, a=string1.lower(), b=string2.lower())
+    difference = round(sequence.ratio() * 100, 1)
+    if difference > 60:
+        return difference
+    return 0
 
 
 
