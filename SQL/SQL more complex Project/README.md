@@ -13,6 +13,8 @@ Answer the following:
   3. Write a query that retrieves the project details, including the location and department names, for projects that have a budget greater than $100,000.
 
   4. Write a query that retrieves the employee details, including the department and location names, for employees who are working on projects with budgets of at least $200,000 in the Montreal office.
+  
+  6. Write a query that retrieves the employee details, including the location, department, and project names, for employees who have worked on at least once on projects in the Marketing department.
 
 
 
@@ -112,9 +114,9 @@ The employees table stores information about the employees of a fictional compan
 
 1. How many projects does each employee in the Sales department work on on average?
 
-      SELECT AVG(num_projects) AS avg_num_projects
+        SELECT AVG(num_projects) AS avg_num_projects
 
-      FROM (
+        FROM (
 
         SELECT COUNT(*) AS num_projects
 
