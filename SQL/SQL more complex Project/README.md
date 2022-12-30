@@ -6,15 +6,13 @@
 
 Answer the following:
 
-    1. How many projects does each employee in the Sales department work on on average?
+  1. How many projects does each employee in the Sales department work on on average?
 
-    2. Write a query that calculates the average salary for employees in each department, by job title.
+  2. Write a query that calculates the average salary for employees in each department, by job title.
     
-    3. Write a query that retrieves the project details, including the location and department names, for projects that have a budget greater than $100,000.
+  3. Write a query that retrieves the project details, including the location and department names, for projects that have a budget greater than $100,000.
 
-    4. Write a query that retrieves the employee details, including the department and location names, for employees who are working on projects in the Montreal office.
-    
-    5. Write a stored procedure that calculates the total budget for projects in the Technology department that are located in the Toronto office
+  4. Write a query that retrieves the employee details, including the department and location names, for employees who are working on projects with budgets of at least $200,000 in the Montreal office.
 
 
 
@@ -195,5 +193,26 @@ Notice that employees don't have a direct connection to projects, department, an
 ![image](https://user-images.githubusercontent.com/119257994/210021538-8277fb49-a007-4456-bb7c-993c6232b7c2.png)
 
 
+5. Write a query that retrieves the employee details, including the location, department, and project names, for employees who have worked on at least once on projects in the Marketing department.
 
+        SELECT e.first_name, e.last_name, e.email, e.job_title, e.salary, l.name AS location, d.name AS department, GROUP_CONCAT(p.name) AS projects
 
+        FROM employees e
+
+        JOIN employee_projects ep ON e.employee_id = ep.employee_id
+
+        JOIN projects p ON ep.project_id = p.project_id
+
+        JOIN departments d ON p.department_id = d.department_id
+
+        JOIN locations l ON p.location_id = l.location_id
+
+        WHERE d.name = 'Marketing'
+
+        GROUP BY e.employee_id
+
+        HAVING COUNT(*) >= 1
+
+        ORDER BY e.salary DESC
+
+![image](https://user-images.githubusercontent.com/119257994/210023457-a1682a49-1cdd-41ef-9d5d-9f8ce43a49dc.png)
