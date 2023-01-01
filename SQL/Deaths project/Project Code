@@ -1,1 +1,46 @@
+# Create the tables:
+CREATE TABLE deaths (
+    country VARCHAR(255),
+    date_year INT,
+    deaths_executions INT,
+    deaths_meningitis INT,
+    deaths_Alzheimer INT,
+    deaths_parkinson INT,
+    death_nutritional_deficiencies INT,
+    deaths_malaria INT,
+    deaths_drowning INT,
+    deaths_interperosnal_violence INT,
+    deaths_maternal_disorders INT,
+    death_aids INT,
+    deaths_drug_use INT,
+    deaths_tuberculosis INT,
+    deaths_cardiovascular_diseases INT,
+    deaths_lower_respiratory_infections INT,
+    deaths_neonatal_disorders INT,
+    deaths_alcohol_use INT,
+    deaths_self_harm INT,
+    deaths_exposure_to_forces_of_nature INT,
+    deaths_diarrheal_diseases INT,
+    deaths_environmental_heat_and_cold_exposures INT,
+    deaths_neoplasms INT,
+    deaths_conflict_and_terrorism INT,
+    deaths_diabetes INT,
+    deaths_chronic_kidney_disease INT,
+    deaths_posionings INT,
+    deaths_protein_energy_malnutrition INT,
+    deaths_terrorism INT,
+    deaths_road_injuries INT,
+    deaths_chronic_respiratory_diseases INT,
+    deaths_cirrhosis_and_other_liver_diseases INT,
+    deaths_digestive_diseases INT,
+    deaths_fire_heat_and_hot_substances INT,
+    deaths_acute_hepatitis INT,
+    deaths_total INT 
+ );
 
+ CREATE TABLE global_population (
+     country VARCHAR(255),
+     date_year INT,
+     population_size INT
+ );
+ 
