@@ -47,7 +47,7 @@ CREATE TABLE raw_data.deaths (
 
  CREATE TABLE raw_data.global_population (
      country VARCHAR(255),
-     date_year INT,
-     population_size INT
+     date_year VARCHAR(255),
+     population_size VARCHAR(255)
  );
  
