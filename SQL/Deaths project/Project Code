@@ -1,5 +1,12 @@
+# Create database:
+CREATE DATABASE project
+
+# Create Schema:
+CREATE SCHEMA raw_data
+
+
 # Create the tables:
-CREATE TABLE deaths (
+CREATE TABLE raw_data.deaths (
     country VARCHAR(255),
     date_year INT,
     deaths_executions INT,
@@ -38,7 +45,7 @@ CREATE TABLE deaths (
     deaths_total INT 
  );
 
- CREATE TABLE global_population (
+ CREATE TABLE raw_data.global_population (
      country VARCHAR(255),
      date_year INT,
      population_size INT
