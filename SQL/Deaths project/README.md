@@ -5,6 +5,12 @@
 
 Run the codes in the file: Create the tables
 
+You will have to create a database and a Schema before creating the tables.
+
+CREATE DATABASE project --creating a database
+
+CREATE SCHEMA raw_data --creating a schema
+
 # Populating the data:
 
 Run the codes in the file: Populating the data
