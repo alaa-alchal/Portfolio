@@ -177,7 +177,7 @@ The Years 2019 down to 2015 had the most mortalities with cardiovascular disease
 
 <img width="1200" alt="image" src="https://user-images.githubusercontent.com/119257994/210200070-783f9b22-6c8b-499b-8b75-cee9d6da7f33.png">
 
-However, this calculation does not tell us the real story because the population number is increasing over time, so you'd normally expect higher mortality over time which would explain why 2019 had the highest mortality and 2018 had the second highest mortality. For more accuracy, we need to estimate the mortality rate to determine if the mortality is increasing per capita.
+However, this calculation does not tell us the real story because the population number is increasing over time, so you'd normally expect higher mortality over time which would explain why 2019 had the highest mortality and 2018 had the second highest mortality. For more accuracy, we need to estimate the mortality rate to determine if the mortality is increasing per capita which will be done in question 2.
 
 
 
