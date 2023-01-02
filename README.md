@@ -7,6 +7,9 @@ Most significant projects:
                           
           •	Detect similar accounts:
             can be found inside the folder: Python
+            
+          • Deaths by cause Analysis over the years
+            can be found inside the folder: SQL
 
           •	List manipulation and multiple function interactions:
             can be found inside the folder: Python
