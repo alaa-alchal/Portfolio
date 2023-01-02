@@ -31,7 +31,7 @@ the global population table contains the historical population number of the pop
 
 The 2 tables will be used to answer the questions below. I Microsoft PowerBi dashboard will also be built to answer all the questions as well.
 
-1. Which years had the highest mortality (number of total deaths)? What were the top three causes of deaths during that year
+1. Which years had the highest mortality (number of total deaths)? What were the top three causes of deaths during that year?
 
 2. Which years had the highest mortality rate (deaths per capita)? What were the top three causes of deaths during that year? Which countries had the highest death rate in that year?
 
