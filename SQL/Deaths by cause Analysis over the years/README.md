@@ -43,60 +43,60 @@ The 2 tables will be used to answer the questions below. I Microsoft PowerBi das
 
 Steps:
 
-      1. get total mortality per year
+1. get total mortality per year
       
-      2. isolate the top 5 years with the highest mortality
+2. isolate the top 5 years with the highest mortality
       
-      3. for each of the 5 years, get the top 3 diseases leading to mortality (need to unpivot the table to get the highest 3 values from the columns section)
+3. for each of the 5 years, get the top 3 diseases leading to mortality (need to unpivot the table to get the highest 3 values from the columns section)
       
-      4. Merge all years into one table
+4. Merge all years into one table
       
-      5. Plot a graph to visualize
+5. Plot a graph to visualize
       
-      6. Analyze the results to determine the major causes of deaths.
+6. Analyze the results to determine the major causes of deaths.
       
 
 
 
-      WITH annual_deaths_distribution as (
-                      SELECT date_year, 
-                             SUM(d.deaths_executions) as executions,
-                             SUM(d.deaths_meningitis) as menignitis,
-                             SUM(d.deaths_Alzheimer) as alzheimers,
-                             SUM(d.deaths_parkinson) as parkinsons,
-                             SUM(d.death_nutritional_deficiencies) as nutritional_deficiencies,
-                             SUM(d.deaths_malaria) as malaria,
-                             SUM(d.deaths_drowning) as drowning,
-                             SUM(d.deaths_interperosnal_violence) as interperosnal_violence,
-                             SUM(d.deaths_maternal_disorders) as maternal_disorders,
-                             SUM(d.death_aids) as aids,
-                             SUM(d.deaths_drug_use) as drug_use,
-                             SUM(d.deaths_tuberculosis) as tuberculosis,
-                             SUM(d.deaths_cardiovascular_diseases) as cardiovascular_diseases,
-                             SUM(d.deaths_lower_respiratory_infections) as lower_respiratory_infections,
-                             SUM(d.deaths_neonatal_disorders) as neonatal_disorders,
-                             SUM(d.deaths_alcohol_use) as alcohol_use,
-                             SUM(d.deaths_self_harm) as suicide,
-                             SUM(d.deaths_exposure_to_forces_of_nature) as natural_disasters,
-                             SUM(d.deaths_diarrheal_diseases) as diarrheal_diseases,
-                             SUM(d.deaths_environmental_heat_and_cold_exposures) as environmental_heat_and_cold_exposures,
-                             SUM(d.deaths_neoplasms) as neoplasms,
-                             SUM(d.deaths_conflict_and_terrorism) as conflict_and_terrorism,
-                             SUM(d.deaths_diabetes) as diabetes,
-                             SUM(d.deaths_chronic_kidney_disease) as chronic_kidney_disease,
-                             SUM(d.deaths_posionings) as posionings,
-                             SUM(d.deaths_protein_energy_malnutrition) as protein_energy_malnutrition,
-                             SUM(d.deaths_terrorism) as terrorism,
-                             SUM(d.deaths_road_injuries) as road_injuries,
-                             SUM(d.deaths_chronic_respiratory_diseases) as chronic_respiratory_diseases,
-                             SUM(d.deaths_cirrhosis_and_other_liver_diseases) as cirrhosis_and_other_liver_diseases,
-                             SUM(d.deaths_digestive_diseases) as digestive_diseases,
-                             SUM(d.deaths_fire_heat_and_hot_substances) as fire_heat_and_hot_substances,
-                             SUM(d.deaths_acute_hepatitis) as acute_hepatitis,
-                             SUM(deaths_total) as total_deaths
-                      FROM raw_data.deaths as d
-                      GROUP by date_year
-                                      ), --- annual deaths per death cause for all years per year
+            WITH annual_deaths_distribution as (
+                            SELECT date_year, 
+                                   SUM(d.deaths_executions) as executions,
+                                   SUM(d.deaths_meningitis) as menignitis,
+                                   SUM(d.deaths_Alzheimer) as alzheimers,
+                                   SUM(d.deaths_parkinson) as parkinsons,
+                                   SUM(d.death_nutritional_deficiencies) as nutritional_deficiencies,
+                                   SUM(d.deaths_malaria) as malaria,
+                                   SUM(d.deaths_drowning) as drowning,
+                                   SUM(d.deaths_interperosnal_violence) as interperosnal_violence,
+                                   SUM(d.deaths_maternal_disorders) as maternal_disorders,
+                                   SUM(d.death_aids) as aids,
+                                   SUM(d.deaths_drug_use) as drug_use,
+                                   SUM(d.deaths_tuberculosis) as tuberculosis,
+                                   SUM(d.deaths_cardiovascular_diseases) as cardiovascular_diseases,
+                                   SUM(d.deaths_lower_respiratory_infections) as lower_respiratory_infections,
+                                   SUM(d.deaths_neonatal_disorders) as neonatal_disorders,
+                                   SUM(d.deaths_alcohol_use) as alcohol_use,
+                                   SUM(d.deaths_self_harm) as suicide,
+                                   SUM(d.deaths_exposure_to_forces_of_nature) as natural_disasters,
+                                   SUM(d.deaths_diarrheal_diseases) as diarrheal_diseases,
+                                   SUM(d.deaths_environmental_heat_and_cold_exposures) as environmental_heat_and_cold_exposures,
+                                   SUM(d.deaths_neoplasms) as neoplasms,
+                                   SUM(d.deaths_conflict_and_terrorism) as conflict_and_terrorism,
+                                   SUM(d.deaths_diabetes) as diabetes,
+                                   SUM(d.deaths_chronic_kidney_disease) as chronic_kidney_disease,
+                                   SUM(d.deaths_posionings) as posionings,
+                                   SUM(d.deaths_protein_energy_malnutrition) as protein_energy_malnutrition,
+                                   SUM(d.deaths_terrorism) as terrorism,
+                                   SUM(d.deaths_road_injuries) as road_injuries,
+                                   SUM(d.deaths_chronic_respiratory_diseases) as chronic_respiratory_diseases,
+                                   SUM(d.deaths_cirrhosis_and_other_liver_diseases) as cirrhosis_and_other_liver_diseases,
+                                   SUM(d.deaths_digestive_diseases) as digestive_diseases,
+                                   SUM(d.deaths_fire_heat_and_hot_substances) as fire_heat_and_hot_substances,
+                                   SUM(d.deaths_acute_hepatitis) as acute_hepatitis,
+                                   SUM(deaths_total) as total_deaths
+                            FROM raw_data.deaths as d
+                            GROUP by date_year
+                                            ), --- annual deaths per death cause for all years per year
 
           top_five_years as (
                       SELECT TOP 5 *
