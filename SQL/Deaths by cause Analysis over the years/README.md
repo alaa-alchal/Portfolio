@@ -33,9 +33,9 @@ The 2 tables will be used to answer the questions below. I Microsoft PowerBi das
 
 1. Which years had the highest mortality (number of total deaths)? What were the top three causes of deaths during that year?
 
-2. Which years had the highest mortality rate (deaths per capita)? What were the top three causes of deaths during that year? Which countries had the highest death rate in that year?
+2. Which years had the highest mortality rate (deaths per capita)? What were the top three causes of deaths during that year?
 
-
+3. Get the countries which had the highest mortality rate (deaths per capita) for each year in the last 10 years?
 
 # Question 1 Answer:
 
@@ -177,10 +177,42 @@ The Years 2019 down to 2015 had the most mortalities with cardiovascular disease
 
 However, this calculation does not tell us the real story because the population number is increasing over time, so you'd normally expect higher mortality over time which would explain why 2019 had the highest mortality and 2018 had the second highest mortality. For more accuracy, we need to estimate the mortality rate to determine if the mortality is increasing per capita which will be done in question 2.
 
+# Question 2 Answer:
+
+To get
+
+Steps:
+
+1. get total mortalities per year from the deaths table
+      
+2. get the global population per year from the global_population table
+
+3. LEFT JOIN global_population into deaths to get all matching records from global_population but keep all rows from the deaths table.
+
+4. isolate the top 5 years with the highest mortality rate (deaths per capita)
+      
+3. for each of the 5 years, get the top 3 diseases with the highest mortality rate (need to unpivot the table to get the highest 3 values from the columns section)
+      
+4. Merge all years into one table
+      
+5. Plot a graph to visualize
+      
+6. Analyze the results to determine the major causes of deaths.
 
 
 
 
+# Question 3
+
+To get the deaths per capita, we need to join the global population data to have deaths and population numbers on the same table. To do that, we need a column in both tables that is a concatenation of the year and the country name to use as the keys columns for the LEFT JOIN. I am using left join because we need to add whatever data available from the global_population to our main tabe deaths and still keep the rows from deaths which don't have a match.
+
+Steps:
+
+1. Create Key columns
+
+2. JOIN 2 tables together
+
+3. Get the mortalities per capita
 
 # Datasource:
 https://ourworldindata.org
