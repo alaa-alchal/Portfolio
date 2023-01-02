@@ -45,10 +45,10 @@ def tax(subtotal):
     return tax_amount
 
 
-order_choice = "" #defining an empty string for now called order_choice
+order_choice =  #defining an empty string for now called order_choice
 def is_valid_option(order_choice):
     '''used to identify if any of the options chosen by the customer is in the list'''
-    if order_choice.lower() in ["meal", "appetizer", "dessert", "beverages", "done"]:
+    if order_choice.lower() in [meal, appetizer, dessert, beverages, done]:
         return True
     else:
         return False
@@ -65,19 +65,19 @@ beverage_track = [0]
 
 def customer_order():
     '''returns a series of questions to the customer about what they want to order and calculates the order subtotal before and after discount if applicable'''
-    anything_else = "y" #the string anything_else is set to be y for now
-    while anything_else == "y": #while the customer wants to order anything else
-        typo = False #the purspose of type is to become true if the customer typed a wrong word order so it becomes true and re-ask the "what would you like to order" question below again
-        question = input("What would you like to order? OPTIONS: meal, appetizer, dessert, beverages\n")
+    anything_else = y #the string anything_else is set to be y for now
+    while anything_else == y: #while the customer wants to order anything else
+        typo = False #the purspose of type is to become true if the customer typed a wrong word order so it becomes true and re-ask the what would you like to order question below again
+        question = input(What would you like to order? OPTIONS: meal, appetizer, dessert, beverages\n)
 
         if is_valid_option(question) == True:
-            if question.lower() == "meal":
-                meal = input("What meal would you like to order? OPTIONS: pizza, calzone\n")
+            if question.lower() == meal:
+                meal = input(What meal would you like to order? OPTIONS: pizza, calzone\n)
                 meal
 
-                if meal.lower() == "pizza":
+                if meal.lower() == pizza:
                     x = Pizza #the amount for pizza is now the amount for x that is used below for calculation
-                    quantity = input("How many pizza orders would you like?\n")
+                    quantity = input(How many pizza orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity)) #I am adding the order cost to the orders_prices list so i keep track of how much to charge the customer
                     meal_track.append(int(quantity))
@@ -85,14 +85,14 @@ def customer_order():
                     for i in range(int(quantity)):
                         if_vegan = input(f'Is pizza #{int(i)+1} vegan? y/n\n') #looping around each pizza order to ask if each pizza is vegan or not
                         if_vegan
-                        if if_vegan == "y":
+                        if if_vegan == y:
                             orders_prices.append(Vegan_option) #adding the charge for choosing vegan
                         else:
                             None
 
-                elif meal.lower() == "calzone":
+                elif meal.lower() == calzone:
                     x = Calzone
-                    quantity = input("How many Calzone orders would you like?\n")
+                    quantity = input(How many Calzone orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     meal_track.append(int(quantity))
@@ -100,75 +100,75 @@ def customer_order():
                     for i in range(int(quantity)):
                         if_vegan = input(f'Is calzone #{int(i)+1} vegan? y/n\n')
                         if_vegan
-                        if if_vegan == "y":
+                        if if_vegan == y:
                             orders_prices.append(Vegan_option)
                         else:
                             None
                 else:
-                    print("Sorry, but that option is not recognized.\n\nPlease try again.\n")
+                    print(Sorry, but that option is not recognized.\n\nPlease try again.\n)
 
-            elif question.lower() == "appetizer":
-                appetizer = input("What appetizer would you like to order? OPTIONS: cheese bread, garlic bread\n")
+            elif question.lower() == appetizer:
+                appetizer = input(What appetizer would you like to order? OPTIONS: cheese bread, garlic bread\n)
                 appetizer
 
-                if appetizer.lower() == "cheese bread":
+                if appetizer.lower() == cheese bread:
                     x = Cheese_bread
-                    quantity = input("How many cheese bread orders would you like?\n")
+                    quantity = input(How many cheese bread orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     appetizer_track.append(int(quantity))
 
-                elif appetizer.lower() == "garlic bread":
+                elif appetizer.lower() == garlic bread:
                     x = Garlic_bread
-                    quantity = input("How many garlic bread orders would you like?\n")
+                    quantity = input(How many garlic bread orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     appetizer_track.append(int(quantity))
 
-            elif question.lower() == "dessert":
-                dessert = input("What dessert would you like to order? OPTIONS: cinnamon sticks, cookies\n")
+            elif question.lower() == dessert:
+                dessert = input(What dessert would you like to order? OPTIONS: cinnamon sticks, cookies\n)
                 dessert
 
-                if dessert.lower() == "cinnamon sticks":
+                if dessert.lower() == cinnamon sticks:
                     x = Cinnamon_sticks
-                    quantity = input("How many cinnamon sticks orders would you like?\n")
+                    quantity = input(How many cinnamon sticks orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     dessert_track.append(int(quantity))
 
-                elif dessert.lower() == "cookies":
+                elif dessert.lower() == cookies:
                     x = Cookies
-                    quantity = input("How many cookies orders would you like?\n")
+                    quantity = input(How many cookies orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     dessert_track.append(int(quantity))
 
-            elif question.lower() == "beverages":
-                beverages = input("What beverages would you like to order? OPTIONS: pop, bottled water\n")
+            elif question.lower() == beverages:
+                beverages = input(What beverages would you like to order? OPTIONS: pop, bottled water\n)
                 beverages
 
-                if beverages.lower() == "pop":
+                if beverages.lower() == pop:
                     x = Pop
-                    quantity = input("How many pop orders would you like?\n")
+                    quantity = input(How many pop orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     beverage_track.append(int(quantity))
 
-                elif beverages.lower() == "bottled water":
+                elif beverages.lower() == bottled water:
                     x = Bottled_water
-                    quantity = input("How many bottled water orders would you like?\n")
+                    quantity = input(How many bottled water orders would you like?\n)
                     quantity
                     orders_prices.append(x * float(quantity))
                     beverage_track.append(int(quantity))
 
-            elif question.lower() == "done":
-                print("you don't seem to have ordered anything. Please try again later.")
+            elif question.lower() == done:
+                print(you don't seem to have ordered anything. Please try again later.)
                 break
         else:
-            print("Sorry, but that option is not recognized.\n\nPlease try again.\n")
+            print(Sorry, but that option is not recognized.\n\nPlease try again.\n)
             typo = True
         if typo == False:
-            anything_else = input("Would you like to order another item? y/n\n")
+            anything_else = input(Would you like to order another item? y/n\n)
 
     subtotal = sum(orders_prices) #this is subtotal prior to discount
     meal_count = sum(meal_track) #counts how many meals ordered
@@ -186,13 +186,13 @@ def customer_order():
     subtotal_after_discount = subtotal - discount
 
     if meal_count and appetizer_count and dessert_count and beverage_count: #inform that the customer got 15% discount because he ordered at least one of everything
-        print("You've ordered a bit of everything. Enjoy your 15% discount!")
-        print(f'Your subtotal prior to the discount was {"%.2f" % subtotal}')
-        print(f'Your new subtotal after the discount is {"%.2f" % subtotal_after_discount}')
+        print(You've ordered a bit of everything. Enjoy your 15% discount!)
+        print(f'Your subtotal prior to the discount was {%.2f % subtotal}')
+        print(f'Your new subtotal after the discount is {%.2f % subtotal_after_discount}')
     elif meal_count and beverage_count: #inform that the customer got 5% discount because he ordered at least one meal and at least one beverage
-        print("You ordered a meal and beverages. Please enjoy your 5% discount!")
-        print(f'Your subtotal prior to the discount was {"%.2f" % subtotal}')
-        print(f'Your new subtotal after the discount is {"%.2f" % subtotal_after_discount}')
+        print(You ordered a meal and beverages. Please enjoy your 5% discount!)
+        print(f'Your subtotal prior to the discount was {%.2f % subtotal}')
+        print(f'Your new subtotal after the discount is {%.2f % subtotal_after_discount}')
     else:
         None
 
@@ -201,21 +201,21 @@ def customer_order():
 
 def main():
     '''main function of the code that recurses the functions above, provides the surcharge for delivery or if customer does not qualify for delivery, provides output if customer does not want to order after knowing delivery surcharge, and finally prints the receipt of the customer'''
-    print("Thanks for visiting Happytime Pizza!\n")
-    print("Please note: there is a fuel surcharge for longer trips.")
-    distance_question = input("How long are you from the restaurant?\n")
+    print(Thanks for visiting Happytime Pizza!\n)
+    print(Please note: there is a fuel surcharge for longer trips.)
+    distance_question = input(How long are you from the restaurant?\n)
 
     if int(distance_question) >= 30:
-        print("Sorry, but we don't deliver that far away. Please visit us to enjoy our pizza and arcade.")
+        print(Sorry, but we don't deliver that far away. Please visit us to enjoy our pizza and arcade.)
 
     else:
         delivery_amount = delivery_distance_premium(distance_question)
-        print(f'The delivery Charge for your order will be {"%.2f" % float(delivery_amount + Delivery_fee)}')
-        last_question = input("Would you still like to place an order with Happytime pizza? y/n\n")
+        print(f'The delivery Charge for your order will be {%.2f % float(delivery_amount + Delivery_fee)}')
+        last_question = input(Would you still like to place an order with Happytime pizza? y/n\n)
 
-        if last_question == "y" or last_question == "Y":
+        if last_question == y or last_question == Y:
             subtotal = customer_order()
-            tip_amount = tip(subtotal,float(input("Please enter a tip percentage for the driver:\n")))
+            tip_amount = tip(subtotal,float(input(Please enter a tip percentage for the driver:\n)))
             tax_amount = tax(subtotal)
 
             #formatting the receipt using f strings so lines have the same length
@@ -223,10 +223,10 @@ def main():
             print(f'TAX: {tax_amount: >12.2f}')
             print(f'TIP: {tip_amount: >12.2f}')
             print(f'DELIVERY: {(delivery_amount+Delivery_fee): >7.2f}')
-            print(f'TOTAL: {(float("%.2f" % subtotal) +float("%.2f" % tax_amount)+float("%.2f" % tip_amount)+float("%.2f" % delivery_amount)+float("%.2f" % Delivery_fee)): >10.2f}')
+            print(f'TOTAL: {(float(%.2f % subtotal) +float(%.2f % tax_amount)+float(%.2f % tip_amount)+float(%.2f % delivery_amount)+float(%.2f % Delivery_fee)): >10.2f}')
 
         else:
-            print("We understand. Have a good day!")
+            print(We understand. Have a good day!)
 
 main() #finally i am running my function main
 

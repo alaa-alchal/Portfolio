@@ -170,7 +170,7 @@ The employees table stores information about the employees of a fictional compan
 4. Write a query that retrieves the employee details, including the department and location names, for employees who are working on projects with budgets of at least $200,000 in the Montreal office.
 
 
-        SELECT (cast(e.first_name as text) || " " || cast(e.last_name as text)) as employee, 
+        SELECT (cast(e.first_name as text) ||   || cast(e.last_name as text)) as employee, 
                 d.name as department, 
                 l.name as location, 
                 p.name as project, 
@@ -186,7 +186,7 @@ The employees table stores information about the employees of a fictional compan
 
         JOIN employees e on e.employee_id = ep.employee_id
 
-        WHERE l.name = "Montreal Office" and p.budget > 200000
+        WHERE l.name = Montreal Office and p.budget > 200000
 
         ORDER BY e.last_name, e.first_name;
 

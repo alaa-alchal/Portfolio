@@ -3,7 +3,7 @@ import csv
 def extract_from_csv(filename, column_position):
     '''a function that reads csv files and extract specific columns'''
     
-    with open(filename, "r", encoding='latin-1', errors='ignore') as csv_file:
+    with open(filename, r, encoding='latin-1', errors='ignore') as csv_file:
         csv_reader = csv.reader(csv_file)
         
         list = []
@@ -13,7 +13,7 @@ def extract_from_csv(filename, column_position):
     csv_file.close()
     return list
 
-# names = extract_from_csv("test_copy.csv", 1)
+# names = extract_from_csv(test_copy.csv, 1)
 # names
 
 
@@ -124,26 +124,26 @@ def write_to_file(list_to_export):
     #Now to the actual writing to file
     typo = False
     while typo == False:
-        question = input("Would you like to export the duplicates into a csv? y/n\n")
-        if question.lower() == "y":
-            question2 = str(input("What would you like to name your csv file? (do not include .csv at the end)\n")) + ".csv"
+        question = input(Would you like to export the duplicates into a csv? y/n\n)
+        if question.lower() == y:
+            question2 = str(input(What would you like to name your csv file? (do not include .csv at the end)\n)) + .csv
             #add titles to csv export
             list_to_export.insert(0, titles_list)
     
             #export the csv with name: Duplicates_list.csv
-            with open(question2, "w", newline="") as AAA:
+            with open(question2, w, newline=) as AAA:
                 writer = csv.writer(AAA)
                 writer.writerows(list_to_export)
                 
             typo = True
             
         #I can remove the next 2 lines but i kept them
-        elif question.lower() == "n": 
+        elif question.lower() == n: 
             typo = True
             
         else:
-            print("The input is invalid!")
-            print("Please try again: [Enter y or n] \n")
+            print(The input is invalid!)
+            print(Please try again: [Enter y or n] \n)
 
             
             
@@ -166,7 +166,7 @@ import copy
 
 def main():
     '''function that will return a final list of which accounts are similar'''
-    csv_file_to_clean = input("Enter file name:\n")
+    csv_file_to_clean = input(Enter file name:\n)
     
 
 # 1. create a dictionary with Id as key and a tuple containing Name, address, and city as value.
@@ -262,7 +262,7 @@ def main():
     list_merge(list_of_duplicates)
     
     print('\n\n')
-    print("Here's a list of your duplicates:")
+    print(Here's a list of your duplicates:)
     print('\n')
     for x in list_of_duplicates:
         print(x)

@@ -18,7 +18,7 @@ The challenge of this assignment is to be able to maniplulate different data str
 # Task:
 The program will ingest feb_2021_to_oct_2022_vaccinations.csv data in this form
 
-<img width="513" alt="Screenshot 2022-11-30 at 12 26 54 AM" src="https://user-images.githubusercontent.com/119257994/204715449-3f0f81ea-3cd4-40f1-8232-cbc83f703029.png">
+<img width=513 alt=Screenshot 2022-11-30 at 12 26 54 AM src=https://user-images.githubusercontent.com/119257994/204715449-3f0f81ea-3cd4-40f1-8232-cbc83f703029.png>
 
 and transform it to a dictionary with keys as the date (column A) and values as a list of vaccination counts for all locations per date (columns B, C, D, E, and F): 
 
@@ -30,4 +30,4 @@ etc.}
 
 The program then sums up the vaccination counts in each list to form a dictionary with Dates as the keys and the total vaccination count per date as the values. The program will then export the data in the form shown below in a csv file after adding headers for the two columns.
 
-<img width="180" alt="Screenshot 2022-11-30 at 12 44 17 AM" src="https://user-images.githubusercontent.com/119257994/204717268-3319f0a4-45c6-48da-8ad7-7e94ace77453.png">
+<img width=180 alt=Screenshot 2022-11-30 at 12 44 17 AM src=https://user-images.githubusercontent.com/119257994/204717268-3319f0a4-45c6-48da-8ad7-7e94ace77453.png>

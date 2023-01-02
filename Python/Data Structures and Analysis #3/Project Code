@@ -24,7 +24,7 @@ def count_by_condition(list_of_tuples, by_what):
     count_second = 0 #counting either ages 40 to 80 or 'Middlesex County'
     count_third = 0 #counting either ages over 80 or 'Unknown/Prefer not to say'
 
-    if by_what.lower() == "count by age":
+    if by_what.lower() == count by age:
         # for loop to get counts per age group
         for x in list_of_tuples:
             if x[1] == '0-19' or x[1] == '20-29' or x[1] == '30-39':
@@ -33,7 +33,7 @@ def count_by_condition(list_of_tuples, by_what):
                 count_second += 1
             elif x[1] == '80+':
                 count_third += 1
-    elif by_what.lower() == "count by location":
+    elif by_what.lower() == count by location:
         # for loop to get counts per location
         for x in list_of_tuples:
             if x[2] == 'City of London':
@@ -47,7 +47,7 @@ def count_by_condition(list_of_tuples, by_what):
 
 
 def main():
-    question = input("Which file would you like to analyze?\n")
+    question = input(Which file would you like to analyze?\n)
     try:
         # 1. Open the file and transform data into lists with the first element being the first element in the line and the second element being a tuple of the remaining 3 elements.
         with open(question, 'r') as file:
@@ -80,14 +80,14 @@ def main():
                         dict_grouped_by_dates[x].append(y[1])
             #print to see (delete later)
             # for x in dict_grouped_by_dates:
-            #     print(x, " : ", dict_grouped_by_dates[x])
+            #     print(x,  : , dict_grouped_by_dates[x])
 
         # 3. counting all cases per location
             cases_in_london = 0
             cases_in_middlesex = 0
             cases_in_unknown_location = 0
             for x in dict_grouped_by_dates:
-                count_x = count_by_condition(dict_grouped_by_dates[x], "count by location")
+                count_x = count_by_condition(dict_grouped_by_dates[x], count by location)
                 cases_in_london += count_x[0]
                 cases_in_middlesex += count_x[1]
                 cases_in_unknown_location += count_x[2]
@@ -101,7 +101,7 @@ def main():
             all_cases_40_to_80 = 0
             all_cases_over_80 = 0
             for x in dict_grouped_by_dates:
-                count = count_by_condition(dict_grouped_by_dates[x], "count by age")
+                count = count_by_condition(dict_grouped_by_dates[x], count by age)
                 all_cases_under_40 += count[0]
                 all_cases_40_to_80 += count[1]
                 all_cases_over_80 += count[2]
@@ -112,7 +112,7 @@ def main():
 
             # the dict_grouped_by_dates['2021-12-30'] returns a list of tuples for the cases on the date selected
             #first item in the tuple are counts under 40, second are counts 40 to 80, and third are counts over 80
-            tuple_with_age_breakdown = count_by_condition(dict_grouped_by_dates['2021-12-30'], "count by age")
+            tuple_with_age_breakdown = count_by_condition(dict_grouped_by_dates['2021-12-30'], count by age)
 
         # 3. Output to text file
 
@@ -120,7 +120,7 @@ def main():
                      f'Of those, there were {cases_in_london} cases reported in London.',
                      f'There were {cases_in_middlesex} cases reported in Middlesex County.',
                      f'There were {cases_in_unknown_location} cases reported from an unknown location.\n',
-                     "Overall cases by age group:",
+                     Overall cases by age group:,
                      f'People under 40 accounted for {all_cases_under_40} case(s).',
                      f'People between 40 and 80 accounted for {all_cases_40_to_80} case(s)',
                      f'People over 80 accounted for {all_cases_over_80} case(s).\n',
@@ -141,7 +141,7 @@ def main():
     except FileNotFoundError as exception:
         print(exception)
         print(f'Sorry, but {question} was not found.')
-        print("The program will now end.")
+        print(The program will now end.)
         exit()
 
 main()

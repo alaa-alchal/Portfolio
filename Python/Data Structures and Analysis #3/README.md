@@ -16,7 +16,7 @@ The challenge of this assignment is to be able to maniplulate different data str
 # Task:
 The program tranforms data from this form:
 
-<img width="375" alt="Screenshot 2022-11-30 at 1 06 08 AM" src="https://user-images.githubusercontent.com/119257994/204720429-6dfd4ddc-5f09-4edc-a361-9bac004b2861.png">
+<img width=375 alt=Screenshot 2022-11-30 at 1 06 08 AM src=https://user-images.githubusercontent.com/119257994/204720429-6dfd4ddc-5f09-4edc-a361-9bac004b2861.png>
 
 to a list of tuples with each tuple containing the date at which the vaccine was administered in the first index position and a tuple (tuple in a tuple) with the details of the individual in the second position (Sex, Age, and Location). The data structure is demonstrated below:
 

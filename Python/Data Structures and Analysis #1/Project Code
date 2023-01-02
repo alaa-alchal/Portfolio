@@ -11,7 +11,7 @@ def vaccinations_by_date(raw_list):
 
 def main():
     '''main function'''
-    question = input("Which file would you like to analyze?\n")
+    question = input(Which file would you like to analyze?\n)
     try:
 #1. open the file and transform data into a dictionary with keys and values in this form: '2021-02-07': ['2549', '1996', '0', '0', '0']
         with open(question, 'r') as file:
@@ -28,7 +28,7 @@ def main():
 #3. Write dict to csv file
             with open('vaccine_doses_by_date.csv', 'w') as csv_file:
                 writer = csv.writer(csv_file, delimiter=',')
-                writer.writerow(["Date", "Doses"]) #add headers
+                writer.writerow([Date, Doses]) #add headers
                 for key, value in vaccinations_by_date_sum_dict_with_title.items():
                     writer.writerow([key, value])
 
@@ -44,7 +44,7 @@ def main():
     except FileNotFoundError as exception:
         print(exception)
         print(f'Sorry, but {question} was not found.')
-        print("The program will now end.")
+        print(The program will now end.)
         exit()
 
 main()

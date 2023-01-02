@@ -64,7 +64,7 @@ def vaccination_total(list_vac_count_by_day):
 
 
 def main():
-    question = input("Which file would you like to analyze?\n")
+    question = input(Which file would you like to analyze?\n)
     try:
         # 1. Open the file and transform da
         with open(question, 'r') as file:
@@ -81,7 +81,7 @@ def main():
         # 3. Output to text file
 
             lines = [f'Total number of vaccinations: {vaccination_total(list_of_tuples)}',
-                     f'Median number of vaccinations: {"%.2f" % median_number_vaccinations(list_of_tuples)}',
+                     f'Median number of vaccinations: {%.2f % median_number_vaccinations(list_of_tuples)}',
                      f'The week of {fewest_vaccinations(list_of_tuples)[0][0]} saw the fewest vaccinations: {fewest_vaccinations(list_of_tuples)[0][1]}',
                      f'The week of {fewest_vaccinations(list_of_tuples)[1][0]} saw the second fewest vaccinations: {fewest_vaccinations(list_of_tuples)[1][1]}',
                      f'The week of {fewest_vaccinations(list_of_tuples)[2][0]} saw the third fewest vaccinations: {fewest_vaccinations(list_of_tuples)[2][1]}',
@@ -99,7 +99,7 @@ def main():
     except FileNotFoundError as exception:
         print(exception)
         print(f'Sorry, but {question} was not found.')
-        print("The program will now end.")
+        print(The program will now end.)
         exit()
 
 main()
