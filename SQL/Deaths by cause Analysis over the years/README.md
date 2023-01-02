@@ -156,8 +156,8 @@ Steps:
                                           )
 
 
-      SELECT *
-      FROM TOP_YEARS_WITH_TOP_CAUSES
+            SELECT *
+            FROM TOP_YEARS_WITH_TOP_CAUSES
 
 
 Before getting to the results, note that the years 2019 down to 2015 were found to have the highest mortality.
