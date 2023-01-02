@@ -42,6 +42,7 @@ The 2 tables will be used to answer the questions below. I Microsoft PowerBi das
 # Question 1 Answer:
 
 Steps:
+
       1. get total mortality per year
       
       2. isolate the top 5 years with the highest mortality
