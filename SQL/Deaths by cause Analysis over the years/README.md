@@ -19,6 +19,13 @@ Note that you need to run then 1000 rows at a time, so 8 runs per table.
 
 Another note to mention is that all columns in global_population are in the data type string due to errors that occured when running date_year and population_size in an INT form.
 
+This is what the deaths table will look like:
+
+<img width="1200" alt="image" src="https://user-images.githubusercontent.com/119257994/210289929-ad0df4ab-ddc4-4420-994e-d9a54f5098a9.png">
+
+And this is what the global_population table will look like:
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/119257994/210289993-68794d17-791e-4349-b2ba-ec7a4770af38.png">
 
 
 # Table Descriptions:
