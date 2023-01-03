@@ -208,6 +208,8 @@ Steps:
 
 Note that global_population table has the following values which need to be opted out:
 
+I got the list of countries from another source and did a VLOOKUP in Excel to find which among the data is not a country. I don't want to physically manipulate the data exctracted from the data source, and I opted them out using code instead. The reason for this step however is to find which records we need to opt out
+
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/119257994/210280992-11fb7dbc-dd3a-4559-a07f-2f07efdd3d32.png">
 
 
