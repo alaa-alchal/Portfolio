@@ -199,9 +199,138 @@ Steps:
       
 6. Analyze the results to determine the major causes of deaths.
 
+Note that global_population table has the following values which need to be opted out:
 
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/119257994/210280992-11fb7dbc-dd3a-4559-a07f-2f07efdd3d32.png">
 
+      WITH population_per_year as (
+                      SELECT CAST(date_year AS INT) AS date_year,
+                             SUM(CAST(population_size AS BIGINT)) AS population_number
+                      FROM raw_data.global_population
+                      WHERE country not in ('Africa', 'Asia', 'Europe', 'European Union (27)', 'High-income countries', 
+                                              'Low-income countries', 'Lower-middle-income countries', 'North America', 
+                                              'South Africa', 'South America', 'Upper-middle-income countries','World')
+                      GROUP BY date_year
+                                      ),
 
+      annual_deaths_distribution as (
+                      SELECT date_year, 
+                             SUM(d.deaths_executions) as executions,
+                             SUM(d.deaths_meningitis) as menignitis,
+                             SUM(d.deaths_Alzheimer) as alzheimers,
+                             SUM(d.deaths_parkinson) as parkinsons,
+                             SUM(d.death_nutritional_deficiencies) as nutritional_deficiencies,
+                             SUM(d.deaths_malaria) as malaria,
+                             SUM(d.deaths_drowning) as drowning,
+                             SUM(d.deaths_interperosnal_violence) as interperosnal_violence,
+                             SUM(d.deaths_maternal_disorders) as maternal_disorders,
+                             SUM(d.death_aids) as aids,
+                             SUM(d.deaths_drug_use) as drug_use,
+                             SUM(d.deaths_tuberculosis) as tuberculosis,
+                             SUM(d.deaths_cardiovascular_diseases) as cardiovascular_diseases,
+                             SUM(d.deaths_lower_respiratory_infections) as lower_respiratory_infections,
+                             SUM(d.deaths_neonatal_disorders) as neonatal_disorders,
+                             SUM(d.deaths_alcohol_use) as alcohol_use,
+                             SUM(d.deaths_self_harm) as suicide,
+                             SUM(d.deaths_exposure_to_forces_of_nature) as natural_disasters,
+                             SUM(d.deaths_diarrheal_diseases) as diarrheal_diseases,
+                             SUM(d.deaths_environmental_heat_and_cold_exposures) as environmental_heat_and_cold_exposures,
+                             SUM(d.deaths_neoplasms) as neoplasms,
+                             SUM(d.deaths_conflict_and_terrorism) as conflict_and_terrorism,
+                             SUM(d.deaths_diabetes) as diabetes,
+                             SUM(d.deaths_chronic_kidney_disease) as chronic_kidney_disease,
+                             SUM(d.deaths_posionings) as posionings,
+                             SUM(d.deaths_protein_energy_malnutrition) as protein_energy_malnutrition,
+                             SUM(d.deaths_terrorism) as terrorism,
+                             SUM(d.deaths_road_injuries) as road_injuries,
+                             SUM(d.deaths_chronic_respiratory_diseases) as chronic_respiratory_diseases,
+                             SUM(d.deaths_cirrhosis_and_other_liver_diseases) as cirrhosis_and_other_liver_diseases,
+                             SUM(d.deaths_digestive_diseases) as digestive_diseases,
+                             SUM(d.deaths_fire_heat_and_hot_substances) as fire_heat_and_hot_substances,
+                             SUM(d.deaths_acute_hepatitis) as acute_hepatitis,
+                             SUM(deaths_total) as total_deaths
+                      FROM raw_data.deaths as d
+                      GROUP by date_year
+                                      ), --- annual deaths rates
+
+      annual_death_rates as(
+                      SELECT d.date_year,
+                             ROUND(CAST(d.executions AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,5) AS executions_death_rate_per1000,
+                             ROUND(CAST(d.menignitis AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS menignitis_death_rate_per1000,
+                             ROUND(CAST(d.alzheimers AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS alzheimers_death_rate_per1000,
+                             ROUND(CAST(d.parkinsons AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS parkinsons_death_rate_per1000,
+                             ROUND(CAST(d.nutritional_deficiencies AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS nutritional_deficiencies_death_rate_per1000,
+                             ROUND(CAST(d.malaria AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS malaria_death_rate_per1000,
+                             ROUND(CAST(d.drowning AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS drowning_death_rate_per1000,
+                             ROUND(CAST(d.interperosnal_violence AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS interperosnal_violence_death_rate_per1000,
+                             ROUND(CAST(d.maternal_disorders AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS maternal_disorders_death_rate_per1000,
+                             ROUND(CAST(d.aids AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS aids_death_rate_per1000,
+                             ROUND(CAST(d.drug_use AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS drug_use_death_rate_per1000,
+                             ROUND(CAST(d.tuberculosis AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS tuberculosis_death_rate_per1000,
+                             ROUND(CAST(d.cardiovascular_diseases AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS cardiovascular_diseases_death_rate_per1000,
+                             ROUND(CAST(d.lower_respiratory_infections AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS lower_respiratory_infections_death_rate_per1000,
+                             ROUND(CAST(d.neonatal_disorders AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS neonatal_disorders_death_rate_per1000,
+                             ROUND(CAST(d.alcohol_use AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS alcohol_use_death_rate_per1000,
+                             ROUND(CAST(d.suicide AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS suicide_death_rate_per1000,
+                             ROUND(CAST(d.natural_disasters AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS natural_disasters_death_rate_per1000,
+                             ROUND(CAST(d.diarrheal_diseases AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS diarrheal_diseases_death_rate_per1000,
+                             ROUND(CAST(d.environmental_heat_and_cold_exposures AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS environmental_heat_and_cold_exposures_death_rate_per1000,
+                             ROUND(CAST(d.neoplasms AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS neoplasms_death_rate_per1000,
+                             ROUND(CAST(d.conflict_and_terrorism AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS conflict_and_terrorism_death_rate_per1000,
+                             ROUND(CAST(d.diabetes AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS diabetes_death_rate_per1000,
+                             ROUND(CAST(d.chronic_kidney_disease AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS chronic_kidney_disease_death_rate_per1000,
+                             ROUND(CAST(d.posionings AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS posionings_death_rate_per1000,
+                             ROUND(CAST(d.protein_energy_malnutrition AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS protein_energy_malnutrition_death_rate_per1000,
+                             ROUND(CAST(d.terrorism AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS terrorism_death_rate_per1000,
+                             ROUND(CAST(d.road_injuries AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS road_injuries_death_rate_per1000,
+                             ROUND(CAST(d.chronic_respiratory_diseases AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS chronic_respiratory_diseases_death_rate_per1000,
+                             ROUND(CAST(d.cirrhosis_and_other_liver_diseases AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS cirrhosis_and_other_liver_diseases_death_rate_per1000,
+                             ROUND(CAST(d.digestive_diseases AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS digestive_diseases_death_rate_per1000,
+                             ROUND(CAST(d.fire_heat_and_hot_substances AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS fire_heat_and_hot_substances_death_rate_per1000,
+                             ROUND(CAST(d.acute_hepatitis AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS acute_hepatitis_death_rate_per1000,
+                             ROUND(CAST(d.total_deaths AS FLOAT)/CAST(p.population_number AS FLOAT)*1000,2) AS total_death_rate_per1000
+
+                      FROM annual_deaths_distribution d
+                      LEFT JOIN population_per_year p ON d.date_year = p.date_year
+
+      ),
+
+      years_with_highest_death_per_capita as (
+                      SELECT TOP 5 *
+                      FROM annual_death_rates
+                      ORDER BY total_death_rate_per1000
+      ), -- getting the 5 years which had the higest total mortality rate (Deaths per capita)
+
+      UNPIVOT_DEATH_RATES as(
+                     SELECT date_year, death_cause, DEATHS
+                     FROM years_with_highest_death_per_capita
+                     UNPIVOT
+                             (
+                             DEATHS
+                             FOR death_cause IN (executions_death_rate_per1000, menignitis_death_rate_per1000, alzheimers_death_rate_per1000, parkinsons_death_rate_per1000, 
+                                                 nutritional_deficiencies_death_rate_per1000, malaria_death_rate_per1000, drowning_death_rate_per1000,  
+                                                 interperosnal_violence_death_rate_per1000, maternal_disorders_death_rate_per1000, aids_death_rate_per1000, 
+                                                 drug_use_death_rate_per1000, tuberculosis_death_rate_per1000, cardiovascular_diseases_death_rate_per1000,
+                                                 lower_respiratory_infections_death_rate_per1000, neonatal_disorders_death_rate_per1000, alcohol_use_death_rate_per1000, 
+                                                 suicide_death_rate_per1000, natural_disasters_death_rate_per1000, diarrheal_diseases_death_rate_per1000, 
+                                                 environmental_heat_and_cold_exposures_death_rate_per1000, neoplasms_death_rate_per1000, 
+                                                 conflict_and_terrorism_death_rate_per1000, diabetes_death_rate_per1000, chronic_kidney_disease_death_rate_per1000, 
+                                                 posionings_death_rate_per1000, protein_energy_malnutrition_death_rate_per1000,terrorism_death_rate_per1000, 
+                                                 road_injuries_death_rate_per1000,chronic_respiratory_diseases_death_rate_per1000, 
+                                                 cirrhosis_and_other_liver_diseases_death_rate_per1000, digestive_diseases_death_rate_per1000,
+                                                 fire_heat_and_hot_substances_death_rate_per1000, acute_hepatitis_death_rate_per1000)
+                             ) as UNPIVOT_DEATH_RATES
+                                                     )
+
+      SELECT *
+      FROM UNPIVOT_DEATH_RATES
+      ORDER BY date_year DESC;
+
+The years with the highest deaths per capita are years 1990, 1991, 1994, 1993, and 1992 in a decreasing order of Death Rate.
+
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/119257994/210286906-06d60f01-11b7-41a1-a5a9-ffe3aeda3349.png">
+
+Note that the Death Rates are the rates per 1,000 people, so 48.32 is 48.32 deaths every 1000 people
 # Question 3
 
 To get the deaths per capita, we need to join the global population data to have deaths and population numbers on the same table. To do that, we need a column in both tables that is a concatenation of the year and the country name to use as the keys columns for the LEFT JOIN. I am using left join because we need to add whatever data available from the global_population to our main tabe deaths and still keep the rows from deaths which don't have a match.
