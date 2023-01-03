@@ -44,7 +44,7 @@ The 2 tables will be used to answer the questions below. I Microsoft PowerBi das
 
 3. Get the countries which had the highest mortality rate (deaths per capita) for each year in the last 10 years?
 
-The first 2 questions will be focused on data handling and manipulation while the last 2 questions will be focused on Visualizations. You will also notice that some pieces of the complete code might be the same among questions
+We're focusing on data handling and manipulations in this project rather than visualization because SQL coding is the skill we use to create the desired data tables before getting inot visualization, and this project is a SQL focused project
 
 # Question 1 Answer:
 
