@@ -203,6 +203,7 @@ Note that global_population table has the following values which need to be opte
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/119257994/210280992-11fb7dbc-dd3a-4559-a07f-2f07efdd3d32.png">
 
+
       WITH population_per_year as (
                       SELECT CAST(date_year AS INT) AS date_year,
                              SUM(CAST(population_size AS BIGINT)) AS population_number
@@ -292,13 +293,12 @@ Note that global_population table has the following values which need to be opte
 
                       FROM annual_deaths_distribution d
                       LEFT JOIN population_per_year p ON d.date_year = p.date_year
-
       ),
 
       years_with_highest_death_per_capita as (
                       SELECT TOP 5 *
                       FROM annual_death_rates
-                      ORDER BY total_death_rate_per1000
+                      ORDER BY total_death_rate_per1000 DESC
       ), -- getting the 5 years which had the higest total mortality rate (Deaths per capita)
 
       UNPIVOT_DEATH_RATES as(
@@ -320,17 +320,67 @@ Note that global_population table has the following values which need to be opte
                                                  cirrhosis_and_other_liver_diseases_death_rate_per1000, digestive_diseases_death_rate_per1000,
                                                  fire_heat_and_hot_substances_death_rate_per1000, acute_hepatitis_death_rate_per1000)
                              ) as UNPIVOT_DEATH_RATES
-                                                     )
+                                                     ),
+
+      HIGHEST_YEARS_WITH_TOP_DEATH_CAUSES AS(
+                      SELECT TOP 3 *
+                      FROM UNPIVOT_DEATH_RATES
+                      WHERE date_year=1990
+                      ORDER BY DEATHS DESC
+
+                      UNION
+
+                      SELECT TOP 3 *
+                      FROM UNPIVOT_DEATH_RATES
+                      WHERE date_year=1991
+                      ORDER BY DEATHS DESC
+
+                      UNION
+
+                      SELECT TOP 3 *
+                      FROM UNPIVOT_DEATH_RATES
+                      WHERE date_year=1992
+                      ORDER BY DEATHS DESC
+
+                      UNION
+
+                      SELECT TOP 3 *
+                      FROM UNPIVOT_DEATH_RATES
+                      WHERE date_year=1993
+                      ORDER BY DEATHS DESC
+
+                      UNION
+                      SELECT TOP 3 *
+                      FROM UNPIVOT_DEATH_RATES
+                      WHERE date_year=1994
+                      ORDER BY DEATHS DESC
+      )
 
       SELECT *
-      FROM UNPIVOT_DEATH_RATES
+      FROM HIGHEST_YEARS_WITH_TOP_DEATH_CAUSES
       ORDER BY date_year DESC;
+
+
+[years_with_highest_death_rates.csv](https://github.com/alaa-alchal/Portfolio/files/10333865/years_with_highest_death_rates.csv)
 
 The years with the highest deaths per capita are years 1990, 1991, 1994, 1993, and 1992 in a decreasing order of Death Rate.
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/119257994/210286906-06d60f01-11b7-41a1-a5a9-ffe3aeda3349.png">
+You can get it by replacing the last 3 lines of the main code by:
+
+            SELECT date_year,total_death_rate_per1000
+            FROM years_with_highest_death_per_capita
+            ORDER BY total_death_rate_per1000 DESC;
+            
+<img width="429" alt="image" src="https://user-images.githubusercontent.com/119257994/210287073-03201258-9987-49d7-ad43-6fd275c73485.png">
 
 Note that the Death Rates are the rates per 1,000 people, so 48.32 is 48.32 deaths every 1000 people
+
+For the final result: [Results.csv](https://github.com/alaa-alchal/Portfolio/files/10333887/Results.csv)
+
+
+
+
+
 # Question 3
 
 To get the deaths per capita, we need to join the global population data to have deaths and population numbers on the same table. To do that, we need a column in both tables that is a concatenation of the year and the country name to use as the keys columns for the LEFT JOIN. I am using left join because we need to add whatever data available from the global_population to our main tabe deaths and still keep the rows from deaths which don't have a match.
@@ -345,3 +395,7 @@ Steps:
 
 # Datasource:
 https://ourworldindata.org
+
+
+
+
