@@ -33,9 +33,11 @@ The 2 tables will be used to answer the questions below. I Microsoft PowerBi das
 
 1. Which years had the highest mortality (number of total deaths)? What were the top three causes of deaths during that year?
 
-2. Which years had the highest mortality rate (deaths per capita)? What were the top three causes of deaths during that year?
+2. Which years had the highest mortality rate (deaths per capita)? What were the top three causes of deaths during that year? Are those rates changing?
 
 3. Get the countries which had the highest mortality rate (deaths per capita) for each year in the last 10 years?
+
+The first 2 questions will be focused on data handling and manipulation while the last 2 questions will be focused on Visualizations. You will also notice that some pieces of the complete code might be the same among questions
 
 # Question 1 Answer:
 
@@ -53,8 +55,6 @@ Steps:
       
 6. Analyze the results to determine the major causes of deaths.
       
-
-
 
             WITH annual_deaths_distribution as (
                             SELECT date_year, 
@@ -302,11 +302,11 @@ Note that global_population table has the following values which need to be opte
       ), -- getting the 5 years which had the higest total mortality rate (Deaths per capita)
 
       UNPIVOT_DEATH_RATES as(
-                     SELECT date_year, death_cause, DEATHS
+                     SELECT date_year, death_cause, DEATH_Rate_Per_1000
                      FROM years_with_highest_death_per_capita
                      UNPIVOT
                              (
-                             DEATHS
+                             DEATH_Rate_Per_1000
                              FOR death_cause IN (executions_death_rate_per1000, menignitis_death_rate_per1000, alzheimers_death_rate_per1000, parkinsons_death_rate_per1000, 
                                                  nutritional_deficiencies_death_rate_per1000, malaria_death_rate_per1000, drowning_death_rate_per1000,  
                                                  interperosnal_violence_death_rate_per1000, maternal_disorders_death_rate_per1000, aids_death_rate_per1000, 
@@ -326,34 +326,34 @@ Note that global_population table has the following values which need to be opte
                       SELECT TOP 3 *
                       FROM UNPIVOT_DEATH_RATES
                       WHERE date_year=1990
-                      ORDER BY DEATHS DESC
+                      ORDER BY DEATH_Rate_Per_1000 DESC
 
                       UNION
 
                       SELECT TOP 3 *
                       FROM UNPIVOT_DEATH_RATES
                       WHERE date_year=1991
-                      ORDER BY DEATHS DESC
+                      ORDER BY DEATH_Rate_Per_1000 DESC
 
                       UNION
 
                       SELECT TOP 3 *
                       FROM UNPIVOT_DEATH_RATES
                       WHERE date_year=1992
-                      ORDER BY DEATHS DESC
+                      ORDER BY DEATH_Rate_Per_1000 DESC
 
                       UNION
 
                       SELECT TOP 3 *
                       FROM UNPIVOT_DEATH_RATES
                       WHERE date_year=1993
-                      ORDER BY DEATHS DESC
+                      ORDER BY DEATH_Rate_Per_1000 DESC
 
                       UNION
                       SELECT TOP 3 *
                       FROM UNPIVOT_DEATH_RATES
                       WHERE date_year=1994
-                      ORDER BY DEATHS DESC
+                      ORDER BY DEATH_Rate_Per_1000 DESC
       )
 
       SELECT *
@@ -375,9 +375,11 @@ You can get it by replacing the last 3 lines of the main code by:
 
 Note that the Death Rates are the rates per 1,000 people, so 48.32 is 48.32 deaths every 1000 people
 
-For the final result: [Results.csv](https://github.com/alaa-alchal/Portfolio/files/10333887/Results.csv)
+These are the Death Rates by top 3 death causes for each year: [Results.csv](https://github.com/alaa-alchal/Portfolio/files/10333887/Results.csv)
 
+Once again, Cardiovascular Diseases, Chronic Respiratory Diseases, and Neoplasms take the lead except for 1990 where the second major death cause was Lower R     espiratory infections.
 
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/119257994/210287988-27c3af05-0f7a-44d0-b5e7-7b2a85918f34.png">
 
 
 
