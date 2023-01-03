@@ -386,7 +386,8 @@ Note that the Death Rates are the rates per 1,000 people, so 48.32 is 48.32 deat
 
 These are the Death Rates by top 3 death causes for each year: [Results.csv](https://github.com/alaa-alchal/Portfolio/files/10333887/Results.csv)
 
-Once again, Cardiovascular Diseases, Chronic Respiratory Diseases, and Neoplasms take the lead except for 1990 where the second major death cause was Lower R     espiratory infections.
+Once again, Cardiovascular Diseases, Chronic Respiratory Diseases, and Neoplasms take the lead except for 1990 where the second major death cause was Lower
+Respiratory infections instead of Chronic Respiratory Diseases.
 
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/119257994/210287988-27c3af05-0f7a-44d0-b5e7-7b2a85918f34.png">
 
@@ -394,15 +395,6 @@ Once again, Cardiovascular Diseases, Chronic Respiratory Diseases, and Neoplasms
 
 # Question 3
 
-To get the deaths per capita, we need to join the global population data to have deaths and population numbers on the same table. To do that, we need a column in both tables that is a concatenation of the year and the country name to use as the keys columns for the LEFT JOIN. I am using left join because we need to add whatever data available from the global_population to our main tabe deaths and still keep the rows from deaths which don't have a match.
-
-Steps:
-
-1. Create Key columns
-
-2. JOIN 2 tables together
-
-3. Get the mortalities per capita
 
 # Datasource:
 https://ourworldindata.org
