@@ -12,11 +12,14 @@
 • Process strings.
 
 # Challenges:
-manipulate lists in functions without using return statements in functions.
-The use of local lists only.
-multiple loop handling (loops within loops within loops).
+• manipulate lists in functions without using return statements in functions.
 
-#Process Documentation:
+• The use of local lists only.
+
+• multiple loop handling (loops within loops within loops).
+
+# Documentation:
+
 The program will start off by asking: Which list would you like to create? [Options: Today, Someday completed]
 
 After choosing the list, I'll ask you if you'd like to add the items to your newly created to-do-list from a file or manually. If you type: from a file, you will be prompted to enter the name of that file while if you type: manually, you will be promted to add items to your list one by one.
