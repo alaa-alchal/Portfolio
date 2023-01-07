@@ -1,6 +1,6 @@
 # Task:
 
-One of the most significant roles of an analyst is to ensure that the is clean and accurate. In this project, we will have a list of customer accounts that might or might not be related. We will extract those accounts from a csv file, and perform a similarity assessment to determine which accounts are related.
+One of the most significant roles of an analyst is to ensure that the data is clean and accurate. In this project, we will be processing a list of customer accounts that might or might not be related. We will extract those accounts from a csv file, and perform a similarity assessment to determine which accounts are related.
 
 # Challenge:
 
