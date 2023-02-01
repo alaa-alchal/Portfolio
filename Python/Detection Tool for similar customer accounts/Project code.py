@@ -26,9 +26,7 @@ def similarity(string1, string2):
     '''a function that calculates percentage similarity between 2 strings'''
     sequence = difflib.SequenceMatcher(isjunk=None, a=string1.lower(), b=string2.lower())
     difference = round(sequence.ratio() * 100, 1)
-    if difference > 60:
-        return difference
-    return 0
+    return difference
 
 
 
