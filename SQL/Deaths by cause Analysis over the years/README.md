@@ -1,5 +1,3 @@
-# WORK IN PROGRESS
-
 
 # Creating the tables:
 
@@ -41,8 +39,6 @@ The 2 tables will be used to answer the questions below. I Microsoft PowerBi das
 1. Which years had the highest mortality (number of total deaths)? What were the top three causes of deaths during that year?
 
 2. Which years had the highest mortality rate (deaths per capita)? What were the top three causes of deaths during that year? Are those rates changing?
-
-3. Get the countries which had the highest mortality rate (deaths per capita) for each year in the last 10 years?
 
 We're focusing on data handling and manipulations in this project rather than visualization because SQL coding is the skill we use to create the desired data tables before getting inot visualization, and this project is a SQL focused project
 
@@ -390,10 +386,6 @@ Once again, Cardiovascular Diseases, Chronic Respiratory Diseases, and Neoplasms
 Respiratory infections instead of Chronic Respiratory Diseases.
 
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/119257994/210287988-27c3af05-0f7a-44d0-b5e7-7b2a85918f34.png">
-
-
-
-# Question 3
 
 
 # Datasource:
