@@ -34,7 +34,7 @@ the global population table contains the historical population number of the pop
 
 # Task:
 
-The 2 tables will be used to answer the questions below. I Microsoft PowerBi dashboard will also be built to answer all the questions as well.
+The 2 tables will be used to answer the questions below. 
 
 1. Which years had the highest mortality (number of total deaths)? What were the top three causes of deaths during that year?
 
