@@ -1,7 +1,7 @@
 import requests
 
 def get_location(business_name):
-    api_key = "AIzaSyAjYlGzIOB97Al1xr-cu1eYSogrFNGizi4"
+    api_key = "Your Personal API Key"
 
     try:
         url = f"https://maps.googleapis.com/maps/api/geocode/json?address={business_name}&key={api_key}"
