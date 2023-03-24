@@ -10,5 +10,5 @@ The code will find the business and get the city and provice where the business 
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/119257994/227400252-cbca94ad-0722-45b5-8ebf-21decf3a8ded.png">
 
-Functions:
+# Functions:
 
