@@ -15,7 +15,8 @@ The challenge of this assignment is to be able to maniplulate different data str
 # Task:
 The code transforms data from this form:
 
-<img width=176 alt=Screenshot 2022-11-30 at 12 53 48 AM src=https://user-images.githubusercontent.com/119257994/204719021-fb8a7ba3-30cf-4ecb-8706-aacc562ae507.png>
+
+<img width="180" alt="image" src=https://user-images.githubusercontent.com/119257994/204719021-fb8a7ba3-30cf-4ecb-8706-aacc562ae507.png>
 
 to a list of tuples in this form: 
 
@@ -23,4 +24,5 @@ to a list of tuples in this form:
 
 The program then analyzes the data and export a txt file named vaccination_data.txt with the insights shown below:
 
-<img width=589 alt=Screenshot 2022-11-30 at 1 01 33 AM src=https://user-images.githubusercontent.com/119257994/204719717-a88b8d31-0158-4d7b-8cea-1eccc4a67893.png>
+
+<img width="589" alt="image" src=https://user-images.githubusercontent.com/119257994/204719717-a88b8d31-0158-4d7b-8cea-1eccc4a67893.png>
