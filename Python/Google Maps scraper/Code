@@ -1,1 +1,67 @@
+import requests
 
+def get_location(business_name):
+    api_key = "Personal API Key"
+
+    try:
+        url = f"https://maps.googleapis.com/maps/api/geocode/json?address={business_name}&key={api_key}"
+
+        response = requests.get(url)
+        data = response.json()
+
+        if data["status"] == "OK":
+            address_components = data["results"][0]["address_components"]
+            city = [component["long_name"] for component in address_components if "locality" in component["types"]][0]
+            province = [component["short_name"] for component in address_components if "administrative_area_level_1" in component["types"]][0]
+            return f"{city}, {province}"
+        else:
+            return "Unable to find the location."
+    except IndexError:
+        return "Index is out of range!"
+        
+        
+        
+import csv
+
+def extract_from_csv(filename):
+    column_index = 0  # Index of the column you want to extract (0 for the first column)
+
+    with open(filename, 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        column = [row[column_index] for row in reader]
+    list_ = []
+    for x in column:
+        list_.append(x)
+    return list_
+
+# print(extract_from_csv("list.csv"))
+
+
+import csv
+
+def export_csv(list_of_tuples):
+
+    filename = "output.csv"
+
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        for row in list_of_tuples:
+            writer.writerow(row)
+            
+            
+            
+def main():
+    filename = input("Enter file name: ")
+    
+    list_of_tups = []
+    for x in extract_from_csv(filename):
+        location = get_location(x)
+        if location in ["Unable to find the location.", "Index is out of range!"]:
+            tup = (x, "")
+        else:
+            tup = (x, location)
+        list_of_tups.append(tup)
+        
+    export_csv(list_of_tups)
+    
+main()
