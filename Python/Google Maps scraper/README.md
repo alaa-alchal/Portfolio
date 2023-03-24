@@ -27,3 +27,4 @@ The code will find the business and get the city and provice where the business 
 • main():
 
  The function loops around the list of businesses extracted, gets the location for each business, stores the results in a list of tuples, and finally extracts the list of tuples in a csv file named "output.csv".
+
