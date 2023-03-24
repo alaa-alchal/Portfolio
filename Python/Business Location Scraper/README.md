@@ -12,3 +12,18 @@ The code will find the business and get the city and provice where the business 
 
 # Functions:
 
+•	get_location(business_name):
+
+  The function takes the business name as the argument, conducts an API call, and returns the business location (city and province). Note that the function is responsible for processing 1 business.
+
+• extract_from_csv(filename):
+  
+ The function reads the csv file containing the 348 businesses and stores them in a list
+
+• export_csv(list_of_tuples):
+
+ The function exports the business names and locations in a csv file by ingesting a list of tuples, with each tuple containing 2 elements, the business name and the location.
+
+• main():
+
+ The function loops around the list of businesses extracted, gets the location for each business, stores the results in a list of tuples, and finally extracts the list of tuples in a csv file named "output.csv".
