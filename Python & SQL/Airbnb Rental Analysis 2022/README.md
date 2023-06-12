@@ -6,7 +6,7 @@ The project aims to analyze the Airbnb market, to find out if renting units and 
 
 # Research Questions:
 
-Is entering the Airbnb market a profitable in 2022-2023?
+Is entering the Airbnb market profitable in 2022-2023?
 
 If yes, how many Airbnb units are needed to generate a 100,000 CAD per year?
 
