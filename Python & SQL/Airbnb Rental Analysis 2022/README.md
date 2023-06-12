@@ -20,7 +20,7 @@ If rental expense goes up by 10%, would we still generate profit? and how many u
 
 # Stakeholders:
 
-Me, and others who are interested in entering the Airbnb business.
+Individuals interested in entering the Airbnb business.
 
 # Process:
 
